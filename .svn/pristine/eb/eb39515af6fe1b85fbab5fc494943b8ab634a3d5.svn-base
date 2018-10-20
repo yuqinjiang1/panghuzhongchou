@@ -1,0 +1,123 @@
+package com.xykj.crowdfunding.reverse.pojo;
+
+public class Account {
+    private Integer acountId;
+
+    private String userId;
+
+    private String tradePassword;
+
+    private Double blockAccount;
+
+    private Double userableAccount;
+
+    private Double unReceiveInterest;
+
+    private Double unReceivePricipal;
+
+    private Double unReturnAmount;
+
+    private Integer remainBorrowLimit;
+
+    private Double overBalace;
+
+    private Integer borrowLimit;
+
+    private String cardNumber;
+
+    public Integer getAcountId() {
+        return acountId;
+    }
+
+    public void setAcountId(Integer acountId) {
+        this.acountId = acountId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getTradePassword() {
+        return tradePassword;
+    }
+
+    public void setTradePassword(String tradePassword) {
+        this.tradePassword = tradePassword == null ? null : tradePassword.trim();
+    }
+
+    public Double getBlockAccount() {
+        return blockAccount;
+    }
+
+    public void setBlockAccount(Double blockAccount) {
+        this.blockAccount = blockAccount;
+    }
+
+    public Double getUserableAccount() {
+        return userableAccount;
+    }
+
+    public void setUserableAccount(Double userableAccount) {
+        this.userableAccount = userableAccount;
+    }
+
+    public Double getUnReceiveInterest() {
+        return unReceiveInterest;
+    }
+
+    public void setUnReceiveInterest(Double unReceiveInterest) {
+        this.unReceiveInterest = unReceiveInterest;
+    }
+
+    public Double getUnReceivePricipal() {
+        return unReceivePricipal;
+    }
+
+    public void setUnReceivePricipal(Double unReceivePricipal) {
+        this.unReceivePricipal = unReceivePricipal;
+    }
+
+    public Double getUnReturnAmount() {
+        return unReturnAmount;
+    }
+
+    public void setUnReturnAmount(Double unReturnAmount) {
+        this.unReturnAmount = unReturnAmount;
+    }
+
+    public Integer getRemainBorrowLimit() {
+        return remainBorrowLimit;
+    }
+
+    public void setRemainBorrowLimit(Integer remainBorrowLimit) {
+        this.remainBorrowLimit = remainBorrowLimit;
+    }
+
+    public Double getOverBalace() {
+        return overBalace;
+    }
+
+    public void setOverBalace(Double overBalace) {
+        this.overBalace = overBalace;
+    }
+
+    public Integer getBorrowLimit() {
+        return borrowLimit;
+    }
+
+    public void setBorrowLimit(Integer borrowLimit) {
+        this.borrowLimit = borrowLimit;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber == null ? null : cardNumber.trim();
+    }
+}

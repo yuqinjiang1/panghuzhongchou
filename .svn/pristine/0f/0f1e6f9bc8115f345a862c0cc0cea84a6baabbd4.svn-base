@@ -1,0 +1,25 @@
+package com.xykj.crowdfunding.service;
+
+import com.xykj.crowdfunding.pojo.User;
+
+public interface UserService {
+	/**
+	 * 注册用户
+	 * @param user
+	 */
+	public boolean register(User user);
+	/**
+	 * 登录
+	 * @param name
+	 * @param password
+	 * @return	是否登录成功
+	 */
+	public User login(String name,String password);
+	/**
+	 * 根据id查用户
+	 * @param userId
+	 * @return
+	 */
+	public User getUserById(String userId);
+
+}

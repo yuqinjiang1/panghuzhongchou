@@ -1,0 +1,9 @@
+package com.xykj.crowdfunding.service;
+
+import com.xykj.crowdfunding.reverse.pojo.Borrowmarkinfo;
+import com.xykj.crowdfunding.utils.EasyUIResult;
+
+public interface BorrowService {
+	public EasyUIResult<Borrowmarkinfo> getResult(int page,int rows);
+	public void addUser(Borrowmarkinfo brmkinfo);
+}

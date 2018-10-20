@@ -1,0 +1,6 @@
+com\xykj\crowdfunding\service\impl\UserServiceImpl.class
+com\xykj\crowdfunding\service\UserService.class
+com\xykj\crowdfunding\dao\UserDao.class
+com\xykj\crowdfunding\controller\UserController.class
+com\xykj\crowdfunding\pojo\User.class
+com\xykj\crowdfunding\pojo\Role.class

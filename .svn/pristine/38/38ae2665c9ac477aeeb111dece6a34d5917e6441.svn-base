@@ -1,0 +1,125 @@
+package com.xykj.crowdfunding.reverse.pojo;
+
+import java.util.Date;
+
+public class RealNameAuthentication {
+    private Integer realNameAuthenticationId;
+
+    private String userId;
+
+    private String username;
+
+    private String name;
+
+    private String sex;
+
+    private String identificationNumber;
+
+    private Date birthDate;
+
+    private String identificationAddress;
+
+    private String idCardPhoto;
+
+    private String auditorId;
+
+    private String auditor;
+
+    private Integer auditStatus;
+
+    public Integer getRealNameAuthenticationId() {
+        return realNameAuthenticationId;
+    }
+
+    public void setRealNameAuthenticationId(Integer realNameAuthenticationId) {
+        this.realNameAuthenticationId = realNameAuthenticationId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username == null ? null : username.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex == null ? null : sex.trim();
+    }
+
+    public String getIdentificationNumber() {
+        return identificationNumber;
+    }
+
+    public void setIdentificationNumber(String identificationNumber) {
+        this.identificationNumber = identificationNumber == null ? null : identificationNumber.trim();
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getIdentificationAddress() {
+        return identificationAddress;
+    }
+
+    public void setIdentificationAddress(String identificationAddress) {
+        this.identificationAddress = identificationAddress == null ? null : identificationAddress.trim();
+    }
+
+    public String getIdCardPhoto() {
+        return idCardPhoto;
+    }
+
+    public void setIdCardPhoto(String idCardPhoto) {
+        this.idCardPhoto = idCardPhoto == null ? null : idCardPhoto.trim();
+    }
+
+    public String getAuditorId() {
+        return auditorId;
+    }
+
+    public void setAuditorId(String auditorId) {
+        this.auditorId = auditorId == null ? null : auditorId.trim();
+    }
+
+    public String getAuditor() {
+        return auditor;
+    }
+
+    public void setAuditor(String auditor) {
+        this.auditor = auditor == null ? null : auditor.trim();
+    }
+
+    public Integer getAuditStatus() {
+        return auditStatus;
+    }
+
+    public void setAuditStatus(Integer auditStatus) {
+        this.auditStatus = auditStatus;
+    }
+}

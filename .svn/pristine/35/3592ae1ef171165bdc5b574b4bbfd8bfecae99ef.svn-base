@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xykj.crowdfunding.reverse.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.xykj.crowdfunding.reverse.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="trader_password" property="traderPassword" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mailbox_authentication_flag" property="mailboxAuthenticationFlag" jdbcType="BIT" />
+    <result column="phone_authentication_flag" property="phoneAuthenticationFlag" jdbcType="BIT" />
+    <result column="vip_member_flag" property="vipMemberFlag" jdbcType="BIT" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="personal_qualifications_id" property="personalQualificationsId" jdbcType="INTEGER" />
+    <result column="monthly_income" property="monthlyIncome" jdbcType="INTEGER" />
+    <result column="marital_status" property="maritalStatus" jdbcType="INTEGER" />
+    <result column="Children_situation" property="childrenSituation" jdbcType="INTEGER" />
+    <result column="housing_conditions" property="housingConditions" jdbcType="INTEGER" />
+    <result column="headimg" property="headimg" jdbcType="VARCHAR" />
+    <result column="id_number" property="idNumber" jdbcType="VARCHAR" />
+    <result column="education_background" property="educationBackground" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    user_id, name, password, phone, trader_password, email, mailbox_authentication_flag, 
+    phone_authentication_flag, vip_member_flag, real_name, personal_qualifications_id, 
+    monthly_income, marital_status, Children_situation, housing_conditions, headimg, 
+    id_number, education_background
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xykj.crowdfunding.reverse.pojo.UserExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.UserExample" >
+    delete from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xykj.crowdfunding.reverse.pojo.User" >
+    insert into user (user_id, name, password, 
+      phone, trader_password, email, 
+      mailbox_authentication_flag, phone_authentication_flag, 
+      vip_member_flag, real_name, personal_qualifications_id, 
+      monthly_income, marital_status, Children_situation, 
+      housing_conditions, headimg, id_number, 
+      education_background)
+    values (#{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{traderPassword,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{mailboxAuthenticationFlag,jdbcType=BIT}, #{phoneAuthenticationFlag,jdbcType=BIT}, 
+      #{vipMemberFlag,jdbcType=BIT}, #{realName,jdbcType=VARCHAR}, #{personalQualificationsId,jdbcType=INTEGER}, 
+      #{monthlyIncome,jdbcType=INTEGER}, #{maritalStatus,jdbcType=INTEGER}, #{childrenSituation,jdbcType=INTEGER}, 
+      #{housingConditions,jdbcType=INTEGER}, #{headimg,jdbcType=VARCHAR}, #{idNumber,jdbcType=VARCHAR}, 
+      #{educationBackground,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xykj.crowdfunding.reverse.pojo.User" >
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="traderPassword != null" >
+        trader_password,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mailboxAuthenticationFlag != null" >
+        mailbox_authentication_flag,
+      </if>
+      <if test="phoneAuthenticationFlag != null" >
+        phone_authentication_flag,
+      </if>
+      <if test="vipMemberFlag != null" >
+        vip_member_flag,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="personalQualificationsId != null" >
+        personal_qualifications_id,
+      </if>
+      <if test="monthlyIncome != null" >
+        monthly_income,
+      </if>
+      <if test="maritalStatus != null" >
+        marital_status,
+      </if>
+      <if test="childrenSituation != null" >
+        Children_situation,
+      </if>
+      <if test="housingConditions != null" >
+        housing_conditions,
+      </if>
+      <if test="headimg != null" >
+        headimg,
+      </if>
+      <if test="idNumber != null" >
+        id_number,
+      </if>
+      <if test="educationBackground != null" >
+        education_background,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="traderPassword != null" >
+        #{traderPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mailboxAuthenticationFlag != null" >
+        #{mailboxAuthenticationFlag,jdbcType=BIT},
+      </if>
+      <if test="phoneAuthenticationFlag != null" >
+        #{phoneAuthenticationFlag,jdbcType=BIT},
+      </if>
+      <if test="vipMemberFlag != null" >
+        #{vipMemberFlag,jdbcType=BIT},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="personalQualificationsId != null" >
+        #{personalQualificationsId,jdbcType=INTEGER},
+      </if>
+      <if test="monthlyIncome != null" >
+        #{monthlyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="maritalStatus != null" >
+        #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="childrenSituation != null" >
+        #{childrenSituation,jdbcType=INTEGER},
+      </if>
+      <if test="housingConditions != null" >
+        #{housingConditions,jdbcType=INTEGER},
+      </if>
+      <if test="headimg != null" >
+        #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackground != null" >
+        #{educationBackground,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.UserExample" resultType="java.lang.Integer" >
+    select count(*) from user
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update user
+    <set >
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.password != null" >
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        phone = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.traderPassword != null" >
+        trader_password = #{record.traderPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        email = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mailboxAuthenticationFlag != null" >
+        mailbox_authentication_flag = #{record.mailboxAuthenticationFlag,jdbcType=BIT},
+      </if>
+      <if test="record.phoneAuthenticationFlag != null" >
+        phone_authentication_flag = #{record.phoneAuthenticationFlag,jdbcType=BIT},
+      </if>
+      <if test="record.vipMemberFlag != null" >
+        vip_member_flag = #{record.vipMemberFlag,jdbcType=BIT},
+      </if>
+      <if test="record.realName != null" >
+        real_name = #{record.realName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.personalQualificationsId != null" >
+        personal_qualifications_id = #{record.personalQualificationsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.monthlyIncome != null" >
+        monthly_income = #{record.monthlyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="record.maritalStatus != null" >
+        marital_status = #{record.maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.childrenSituation != null" >
+        Children_situation = #{record.childrenSituation,jdbcType=INTEGER},
+      </if>
+      <if test="record.housingConditions != null" >
+        housing_conditions = #{record.housingConditions,jdbcType=INTEGER},
+      </if>
+      <if test="record.headimg != null" >
+        headimg = #{record.headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idNumber != null" >
+        id_number = #{record.idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.educationBackground != null" >
+        education_background = #{record.educationBackground,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update user
+    set user_id = #{record.userId,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      phone = #{record.phone,jdbcType=VARCHAR},
+      trader_password = #{record.traderPassword,jdbcType=VARCHAR},
+      email = #{record.email,jdbcType=VARCHAR},
+      mailbox_authentication_flag = #{record.mailboxAuthenticationFlag,jdbcType=BIT},
+      phone_authentication_flag = #{record.phoneAuthenticationFlag,jdbcType=BIT},
+      vip_member_flag = #{record.vipMemberFlag,jdbcType=BIT},
+      real_name = #{record.realName,jdbcType=VARCHAR},
+      personal_qualifications_id = #{record.personalQualificationsId,jdbcType=INTEGER},
+      monthly_income = #{record.monthlyIncome,jdbcType=INTEGER},
+      marital_status = #{record.maritalStatus,jdbcType=INTEGER},
+      Children_situation = #{record.childrenSituation,jdbcType=INTEGER},
+      housing_conditions = #{record.housingConditions,jdbcType=INTEGER},
+      headimg = #{record.headimg,jdbcType=VARCHAR},
+      id_number = #{record.idNumber,jdbcType=VARCHAR},
+      education_background = #{record.educationBackground,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xykj.crowdfunding.reverse.pojo.User" >
+    update user
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="traderPassword != null" >
+        trader_password = #{traderPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mailboxAuthenticationFlag != null" >
+        mailbox_authentication_flag = #{mailboxAuthenticationFlag,jdbcType=BIT},
+      </if>
+      <if test="phoneAuthenticationFlag != null" >
+        phone_authentication_flag = #{phoneAuthenticationFlag,jdbcType=BIT},
+      </if>
+      <if test="vipMemberFlag != null" >
+        vip_member_flag = #{vipMemberFlag,jdbcType=BIT},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="personalQualificationsId != null" >
+        personal_qualifications_id = #{personalQualificationsId,jdbcType=INTEGER},
+      </if>
+      <if test="monthlyIncome != null" >
+        monthly_income = #{monthlyIncome,jdbcType=INTEGER},
+      </if>
+      <if test="maritalStatus != null" >
+        marital_status = #{maritalStatus,jdbcType=INTEGER},
+      </if>
+      <if test="childrenSituation != null" >
+        Children_situation = #{childrenSituation,jdbcType=INTEGER},
+      </if>
+      <if test="housingConditions != null" >
+        housing_conditions = #{housingConditions,jdbcType=INTEGER},
+      </if>
+      <if test="headimg != null" >
+        headimg = #{headimg,jdbcType=VARCHAR},
+      </if>
+      <if test="idNumber != null" >
+        id_number = #{idNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="educationBackground != null" >
+        education_background = #{educationBackground,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xykj.crowdfunding.reverse.pojo.User" >
+    update user
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      trader_password = #{traderPassword,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mailbox_authentication_flag = #{mailboxAuthenticationFlag,jdbcType=BIT},
+      phone_authentication_flag = #{phoneAuthenticationFlag,jdbcType=BIT},
+      vip_member_flag = #{vipMemberFlag,jdbcType=BIT},
+      real_name = #{realName,jdbcType=VARCHAR},
+      personal_qualifications_id = #{personalQualificationsId,jdbcType=INTEGER},
+      monthly_income = #{monthlyIncome,jdbcType=INTEGER},
+      marital_status = #{maritalStatus,jdbcType=INTEGER},
+      Children_situation = #{childrenSituation,jdbcType=INTEGER},
+      housing_conditions = #{housingConditions,jdbcType=INTEGER},
+      headimg = #{headimg,jdbcType=VARCHAR},
+      id_number = #{idNumber,jdbcType=VARCHAR},
+      education_background = #{educationBackground,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=VARCHAR}
+  </update>
+</mapper>

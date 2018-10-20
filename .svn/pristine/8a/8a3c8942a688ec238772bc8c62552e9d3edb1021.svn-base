@@ -1,0 +1,40 @@
+package com.xykj.crowdfunding.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.xykj.crowdfunding.dao.UserDao;
+import com.xykj.crowdfunding.pojo.User;
+import com.xykj.crowdfunding.service.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+	@Autowired
+	private UserDao userDao;
+	
+	@Override
+	public boolean register(User user) {
+		int i = userDao.register(user);
+		System.out.println("注册结果： "+i);
+		if (i>0) {
+			return true;
+		}
+		return false;
+	}
+	@Override
+	public User login(String name, String password) {
+		User user = userDao.getUserByNameAndPassWord(name, password);
+		System.out.println("user: "+user);
+		return user;
+	}
+	@Override
+	public User getUserById(String userId) {
+		// TODO Auto-generated method stub
+		return userDao.getUserById(userId);
+	}
+
+
+
+
+
+}

@@ -1,0 +1,42 @@
+package com.xykj.crowdfunding.dao;
+
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.xykj.crowdfunding.pojo.User;
+
+public interface UserDao {
+	/**
+	 * 注册
+	 * @param user
+	 */
+	public int register(User user);
+	/**
+	 * 根据姓名查找用户
+	 * @param name
+	 * @return
+	 */
+	public User getUserByName(String name);
+	/**
+	 * 根据手机查找用户
+	 * @param phone
+	 * @return
+	 */
+	public User getUserByPhone(String phone);
+	
+	/**
+	 * 根据用户名和密码查询用户
+	 * @param name
+	 * @param password
+	 * @return	返回查询出来的用户
+	 */
+	public User getUserByNameAndPassWord(String name,String password);
+
+	/**
+	 * 根据id查用户
+	 * @param userId
+	 * @return
+	 */
+	public User getUserById(String userId);
+	
+
+}

@@ -1,0 +1,249 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@include file="/head.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<c:set var="cpath" value="${pageContext.request.contextPath }"></c:set>
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/icon.css" />
+
+<!-- 需要先导入jquery的文件，再导入easyUI文件 -->
+<script type="text/javascript" src="${cpath }/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${cpath }/easyui/jquery.easyui.min.js"></script>
+<link rel="stylesheet" href="${cpath }/easyui/themes/icon.css"
+	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/css/borrow-money.css">
+<link rel="stylesheet" type="text/css" href="${cpath }/css/head.css" />
+
+<style type="text/css">
+.carloans {
+	float: left;
+	margin-left: 300px;
+}
+</style>
+
+
+</head>
+<body>
+
+	<div>
+		<div class="creditloan">
+			<div class="easyui-panel" title="借款人"
+				style="width: 300px; height: 250px;">
+				<!--   显示头像资料:<input></input> -->
+			</div>
+		</div>
+	</div>
+
+	<div class="carloans">
+		<table align="left">
+			<tr>
+				<th colspan="2" style="color: #0299DD"><h2>借点钱读书呀~借款</h2></th>
+			</tr>
+			<tr>
+				<td>借款金额</td>
+				<td style="color: #0299dd">1500</td>
+				<td>借款金额</td>
+				<td style="color: #0299DD">15%</td>
+			</tr>
+
+			<tr>
+				<td>借款期限</td>
+				<td style="color: #0299DD">6月</td>
+				<td>总可得利息</td>
+				<td style="color: #0299DD">66.3</td>
+			</tr>
+			<tr>
+				<td>还款方式</td>
+				<td style="color: #0299DD">按月分期还款</td>
+				<td>最小投标</td>
+				<td style="color: #0299DD">50</td>
+			</tr>
+
+			<tr>
+				<td>风控意见</td>
+				<td colspan="2" style="color: #0299DD">给用户信用良好，可以借款</td>
+			</tr>
+
+			<tr>
+				<td>剩余时间</td>
+				<td colspan="2" style="color: #0299DD">0:0:0:0</td>
+			</tr>
+		</table>
+	</div>
+
+	<div class="carloans">
+		<table>
+			<tr>
+				<td>投标总数</td>
+				<td style="color: #0299DD">0</td>
+			</tr>
+			<tr>
+				<td>还需金额</td>
+				<td style="color: #0299DD">1500元</td>
+			</tr>
+			<tr>
+				<td>投标进度</td>
+				<td></td>
+			</tr>
+		</table>
+		<!-- 进度条 -->
+		<div style="margin: 20px 0;"></div>
+		<div class="easyui-progressbar" style="width: 100%;"></div>
+
+		<div style="background: #fafafa; width: 150px;">
+			<a href="#" class="easyui-linkbutton"
+				style="background: #D9534F; color: white; width: 200px; height: 40px;">登录投标</a>
+		</div>
+
+	</div>
+
+
+	<div style="clear: both">
+		<div class="easyui-panel" title="借款人信息"
+			style="width: 1500px; height: 130px;background-color: pink;">
+			<div data-options="region:'center',split:true" style="height: 50px;">
+				<div>
+					<ul style="list-style-type: none;">
+						<li style="float: left; margin: 10px 0; width: 250px">注册时间<span
+							style="color: #337AB7; padding-left: 10px"></span>
+						</li>
+						<li style="float: left; margin: 10px 0; width: 250px">借款额度 <span
+							style="color:#337AB7; padding-left: 10px">1500</span>
+						</li>
+						<li style="float: left; margin: 10px 0; width: 250px">性别<span
+							style="color: #337AB7; padding-left: 10px">男</span>
+						</li>
+						<li style="float: left; margin: 10px 0; width: 250px">住房条件<span
+							style="color: #337AB7; padding-left: 10px">无住房</span>
+						</li>
+
+						<li style="float: left; margin: 10px 0; width: 250px">文化程度<span
+							style="color: #337AB7; padding-left: 10px">本科</span>
+						</li>
+						<li style="float: left; margin: 10px 0; width: 250px">每月收入<span
+							style="color: #337AB7; padding-left: 10px">3000以下</span>
+						</li>
+						<li style="float: left; margin: 10px 0; width: 250px">婚姻情况<span
+							style="color: #337AB7; padding-left: 10px">未婚</span>
+						</li>
+						<li style="float: left; margin: 10px 0; width: 250px">子女情况<span
+							style="color: #337AB7; padding-left: 10px">无子女</span>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div>
+		<div id="material" class="easyui-panel" title="材料信息"
+			style="width: 1500px; height: 250px;background-color: pink;">
+			<table>
+				<tr>
+					<th>材料类型</th>
+
+					<th>材料数量</th>
+				</tr>
+
+				<tr>
+					<td>家属身份证正面</td>
+					<td>1</td>
+				</tr>
+
+				<tr>
+					<td>家属身份证背面</td>
+					<td>1</td>
+				</tr>
+
+				<tr>
+					<td>借款承诺书</td>
+					<td>1</td>
+				</tr>
+
+				<tr>
+					<td>公司银行流水</td>
+					<td>1</td>
+				</tr>
+
+				<tr>
+					<td>无信用记录的信用报告</td>
+					<td>1</td>
+				</tr>
+
+				<tr>
+					<td>驾驶证</td>
+					<td>1</td>
+				</tr>
+
+				<tr>
+					<td>正规毕业证</td>
+					<td>1</td>
+				</tr>
+
+			</table>
+
+		</div>
+	</div>
+
+	<div class="easyui-panel" title="还款情况"
+		style="width: 1500px; height: 250px;">
+		<table>
+			<tr>
+				<th>还款状态</th>
+				<th>最近一周</th>
+				<th>最近1个月</th>
+				<th>最近6个月</th>
+				<th>6个月前</th>
+				<th>总计(?)</th>
+			</tr>
+
+			<tr>
+				<td>提前还款</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+
+			<tr>
+				<td>准时还款</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+
+			<tr>
+				<td>逾期已还</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+
+			<tr>
+				<td>逾期未还</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+				<td>0</td>
+			</tr>
+
+		</table>
+	</div>
+</body>
+</html>

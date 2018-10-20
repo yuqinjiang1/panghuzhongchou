@@ -1,0 +1,9 @@
+package com.xykj.crowdfunding.service;
+
+import com.xykj.crowdfunding.reverse.pojo.Loanform;
+import com.xykj.crowdfunding.utils.EasyUIResult;
+
+public interface LoanformService {
+	public EasyUIResult<Loanform> getResult(int page,int rows);
+	public void addUser(Loanform loanform);
+}

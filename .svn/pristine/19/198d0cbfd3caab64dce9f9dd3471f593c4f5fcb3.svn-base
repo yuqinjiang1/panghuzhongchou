@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xykj.crowdfunding.reverse.dao.AccountMapper" >
+  <resultMap id="BaseResultMap" type="com.xykj.crowdfunding.reverse.pojo.Account" >
+    <id column="acount_id" property="acountId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="trade_password" property="tradePassword" jdbcType="VARCHAR" />
+    <result column="block_account" property="blockAccount" jdbcType="DOUBLE" />
+    <result column="userable_account" property="userableAccount" jdbcType="DOUBLE" />
+    <result column="un_receive_interest" property="unReceiveInterest" jdbcType="DOUBLE" />
+    <result column="un_receive_pricipal" property="unReceivePricipal" jdbcType="DOUBLE" />
+    <result column="un_return_amount" property="unReturnAmount" jdbcType="DOUBLE" />
+    <result column="remain_borrow_limit" property="remainBorrowLimit" jdbcType="INTEGER" />
+    <result column="over_balace" property="overBalace" jdbcType="DOUBLE" />
+    <result column="borrow_limit" property="borrowLimit" jdbcType="INTEGER" />
+    <result column="card_number" property="cardNumber" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    acount_id, user_id, trade_password, block_account, userable_account, un_receive_interest, 
+    un_receive_pricipal, un_return_amount, remain_borrow_limit, over_balace, borrow_limit, 
+    card_number
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xykj.crowdfunding.reverse.pojo.AccountExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from account
+    where acount_id = #{acountId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from account
+    where acount_id = #{acountId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.AccountExample" >
+    delete from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xykj.crowdfunding.reverse.pojo.Account" >
+    insert into account (acount_id, user_id, trade_password, 
+      block_account, userable_account, un_receive_interest, 
+      un_receive_pricipal, un_return_amount, remain_borrow_limit, 
+      over_balace, borrow_limit, card_number
+      )
+    values (#{acountId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, #{tradePassword,jdbcType=VARCHAR}, 
+      #{blockAccount,jdbcType=DOUBLE}, #{userableAccount,jdbcType=DOUBLE}, #{unReceiveInterest,jdbcType=DOUBLE}, 
+      #{unReceivePricipal,jdbcType=DOUBLE}, #{unReturnAmount,jdbcType=DOUBLE}, #{remainBorrowLimit,jdbcType=INTEGER}, 
+      #{overBalace,jdbcType=DOUBLE}, #{borrowLimit,jdbcType=INTEGER}, #{cardNumber,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xykj.crowdfunding.reverse.pojo.Account" >
+    insert into account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="acountId != null" >
+        acount_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="tradePassword != null" >
+        trade_password,
+      </if>
+      <if test="blockAccount != null" >
+        block_account,
+      </if>
+      <if test="userableAccount != null" >
+        userable_account,
+      </if>
+      <if test="unReceiveInterest != null" >
+        un_receive_interest,
+      </if>
+      <if test="unReceivePricipal != null" >
+        un_receive_pricipal,
+      </if>
+      <if test="unReturnAmount != null" >
+        un_return_amount,
+      </if>
+      <if test="remainBorrowLimit != null" >
+        remain_borrow_limit,
+      </if>
+      <if test="overBalace != null" >
+        over_balace,
+      </if>
+      <if test="borrowLimit != null" >
+        borrow_limit,
+      </if>
+      <if test="cardNumber != null" >
+        card_number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="acountId != null" >
+        #{acountId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePassword != null" >
+        #{tradePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="blockAccount != null" >
+        #{blockAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="userableAccount != null" >
+        #{userableAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="unReceiveInterest != null" >
+        #{unReceiveInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="unReceivePricipal != null" >
+        #{unReceivePricipal,jdbcType=DOUBLE},
+      </if>
+      <if test="unReturnAmount != null" >
+        #{unReturnAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="remainBorrowLimit != null" >
+        #{remainBorrowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="overBalace != null" >
+        #{overBalace,jdbcType=DOUBLE},
+      </if>
+      <if test="borrowLimit != null" >
+        #{borrowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        #{cardNumber,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.AccountExample" resultType="java.lang.Integer" >
+    select count(*) from account
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update account
+    <set >
+      <if test="record.acountId != null" >
+        acount_id = #{record.acountId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradePassword != null" >
+        trade_password = #{record.tradePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blockAccount != null" >
+        block_account = #{record.blockAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.userableAccount != null" >
+        userable_account = #{record.userableAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unReceiveInterest != null" >
+        un_receive_interest = #{record.unReceiveInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unReceivePricipal != null" >
+        un_receive_pricipal = #{record.unReceivePricipal,jdbcType=DOUBLE},
+      </if>
+      <if test="record.unReturnAmount != null" >
+        un_return_amount = #{record.unReturnAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="record.remainBorrowLimit != null" >
+        remain_borrow_limit = #{record.remainBorrowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.overBalace != null" >
+        over_balace = #{record.overBalace,jdbcType=DOUBLE},
+      </if>
+      <if test="record.borrowLimit != null" >
+        borrow_limit = #{record.borrowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNumber != null" >
+        card_number = #{record.cardNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update account
+    set acount_id = #{record.acountId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      trade_password = #{record.tradePassword,jdbcType=VARCHAR},
+      block_account = #{record.blockAccount,jdbcType=DOUBLE},
+      userable_account = #{record.userableAccount,jdbcType=DOUBLE},
+      un_receive_interest = #{record.unReceiveInterest,jdbcType=DOUBLE},
+      un_receive_pricipal = #{record.unReceivePricipal,jdbcType=DOUBLE},
+      un_return_amount = #{record.unReturnAmount,jdbcType=DOUBLE},
+      remain_borrow_limit = #{record.remainBorrowLimit,jdbcType=INTEGER},
+      over_balace = #{record.overBalace,jdbcType=DOUBLE},
+      borrow_limit = #{record.borrowLimit,jdbcType=INTEGER},
+      card_number = #{record.cardNumber,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xykj.crowdfunding.reverse.pojo.Account" >
+    update account
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="tradePassword != null" >
+        trade_password = #{tradePassword,jdbcType=VARCHAR},
+      </if>
+      <if test="blockAccount != null" >
+        block_account = #{blockAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="userableAccount != null" >
+        userable_account = #{userableAccount,jdbcType=DOUBLE},
+      </if>
+      <if test="unReceiveInterest != null" >
+        un_receive_interest = #{unReceiveInterest,jdbcType=DOUBLE},
+      </if>
+      <if test="unReceivePricipal != null" >
+        un_receive_pricipal = #{unReceivePricipal,jdbcType=DOUBLE},
+      </if>
+      <if test="unReturnAmount != null" >
+        un_return_amount = #{unReturnAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="remainBorrowLimit != null" >
+        remain_borrow_limit = #{remainBorrowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="overBalace != null" >
+        over_balace = #{overBalace,jdbcType=DOUBLE},
+      </if>
+      <if test="borrowLimit != null" >
+        borrow_limit = #{borrowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="cardNumber != null" >
+        card_number = #{cardNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where acount_id = #{acountId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xykj.crowdfunding.reverse.pojo.Account" >
+    update account
+    set user_id = #{userId,jdbcType=VARCHAR},
+      trade_password = #{tradePassword,jdbcType=VARCHAR},
+      block_account = #{blockAccount,jdbcType=DOUBLE},
+      userable_account = #{userableAccount,jdbcType=DOUBLE},
+      un_receive_interest = #{unReceiveInterest,jdbcType=DOUBLE},
+      un_receive_pricipal = #{unReceivePricipal,jdbcType=DOUBLE},
+      un_return_amount = #{unReturnAmount,jdbcType=DOUBLE},
+      remain_borrow_limit = #{remainBorrowLimit,jdbcType=INTEGER},
+      over_balace = #{overBalace,jdbcType=DOUBLE},
+      borrow_limit = #{borrowLimit,jdbcType=INTEGER},
+      card_number = #{cardNumber,jdbcType=VARCHAR}
+    where acount_id = #{acountId,jdbcType=INTEGER}
+  </update>
+</mapper>

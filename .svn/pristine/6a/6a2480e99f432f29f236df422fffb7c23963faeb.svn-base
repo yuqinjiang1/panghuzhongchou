@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xykj.crowdfunding.reverse.dao.LoanformMapper" >
+  <resultMap id="BaseResultMap" type="com.xykj.crowdfunding.reverse.pojo.Loanform" >
+    <id column="loan_id" property="loanId" jdbcType="INTEGER" />
+    <result column="borrow_user_id" property="borrowUserId" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="retrun_type" property="retrunType" jdbcType="INTEGER" />
+    <result column="bid_request_type" property="bidRequestType" jdbcType="INTEGER" />
+    <result column="bid_request_state" property="bidRequestState" jdbcType="INTEGER" />
+    <result column="bid_request_amount" property="bidRequestAmount" jdbcType="DECIMAL" />
+    <result column="current_rate" property="currentRate" jdbcType="DECIMAL" />
+    <result column="min_bid_amount" property="minBidAmount" jdbcType="DECIMAL" />
+    <result column="monthes2_return" property="monthes2Return" jdbcType="INTEGER" />
+    <result column="bid_count" property="bidCount" jdbcType="INTEGER" />
+    <result column="total_reward_amount" property="totalRewardAmount" jdbcType="INTEGER" />
+    <result column="current_sum" property="currentSum" jdbcType="DECIMAL" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="disable_date" property="disableDate" jdbcType="DATE" />
+    <result column="disable_days" property="disableDays" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="bids" property="bids" jdbcType="VARCHAR" />
+    <result column="apply_time" property="applyTime" jdbcType="DATE" />
+    <result column="publish_time" property="publishTime" jdbcType="DATE" />
+    <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+    <result column="name_of_auditor" property="nameOfAuditor" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    loan_id, borrow_user_id, version, retrun_type, bid_request_type, bid_request_state, 
+    bid_request_amount, current_rate, min_bid_amount, monthes2_return, bid_count, total_reward_amount, 
+    current_sum, title, description, note, disable_date, disable_days, create_user, bids, 
+    apply_time, publish_time, auditor_id, name_of_auditor
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xykj.crowdfunding.reverse.pojo.LoanformExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from loanform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from loanform
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from loanform
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.LoanformExample" >
+    delete from loanform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xykj.crowdfunding.reverse.pojo.Loanform" >
+    insert into loanform (loan_id, borrow_user_id, version, 
+      retrun_type, bid_request_type, bid_request_state, 
+      bid_request_amount, current_rate, min_bid_amount, 
+      monthes2_return, bid_count, total_reward_amount, 
+      current_sum, title, description, 
+      note, disable_date, disable_days, 
+      create_user, bids, apply_time, 
+      publish_time, auditor_id, name_of_auditor
+      )
+    values (#{loanId,jdbcType=INTEGER}, #{borrowUserId,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{retrunType,jdbcType=INTEGER}, #{bidRequestType,jdbcType=INTEGER}, #{bidRequestState,jdbcType=INTEGER}, 
+      #{bidRequestAmount,jdbcType=DECIMAL}, #{currentRate,jdbcType=DECIMAL}, #{minBidAmount,jdbcType=DECIMAL}, 
+      #{monthes2Return,jdbcType=INTEGER}, #{bidCount,jdbcType=INTEGER}, #{totalRewardAmount,jdbcType=INTEGER}, 
+      #{currentSum,jdbcType=DECIMAL}, #{title,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{disableDate,jdbcType=DATE}, #{disableDays,jdbcType=INTEGER}, 
+      #{createUser,jdbcType=VARCHAR}, #{bids,jdbcType=VARCHAR}, #{applyTime,jdbcType=DATE}, 
+      #{publishTime,jdbcType=DATE}, #{auditorId,jdbcType=VARCHAR}, #{nameOfAuditor,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xykj.crowdfunding.reverse.pojo.Loanform" >
+    insert into loanform
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="loanId != null" >
+        loan_id,
+      </if>
+      <if test="borrowUserId != null" >
+        borrow_user_id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="retrunType != null" >
+        retrun_type,
+      </if>
+      <if test="bidRequestType != null" >
+        bid_request_type,
+      </if>
+      <if test="bidRequestState != null" >
+        bid_request_state,
+      </if>
+      <if test="bidRequestAmount != null" >
+        bid_request_amount,
+      </if>
+      <if test="currentRate != null" >
+        current_rate,
+      </if>
+      <if test="minBidAmount != null" >
+        min_bid_amount,
+      </if>
+      <if test="monthes2Return != null" >
+        monthes2_return,
+      </if>
+      <if test="bidCount != null" >
+        bid_count,
+      </if>
+      <if test="totalRewardAmount != null" >
+        total_reward_amount,
+      </if>
+      <if test="currentSum != null" >
+        current_sum,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="disableDate != null" >
+        disable_date,
+      </if>
+      <if test="disableDays != null" >
+        disable_days,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="bids != null" >
+        bids,
+      </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="publishTime != null" >
+        publish_time,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="nameOfAuditor != null" >
+        name_of_auditor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="loanId != null" >
+        #{loanId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowUserId != null" >
+        #{borrowUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="retrunType != null" >
+        #{retrunType,jdbcType=INTEGER},
+      </if>
+      <if test="bidRequestType != null" >
+        #{bidRequestType,jdbcType=INTEGER},
+      </if>
+      <if test="bidRequestState != null" >
+        #{bidRequestState,jdbcType=INTEGER},
+      </if>
+      <if test="bidRequestAmount != null" >
+        #{bidRequestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="currentRate != null" >
+        #{currentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="minBidAmount != null" >
+        #{minBidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="monthes2Return != null" >
+        #{monthes2Return,jdbcType=INTEGER},
+      </if>
+      <if test="bidCount != null" >
+        #{bidCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalRewardAmount != null" >
+        #{totalRewardAmount,jdbcType=INTEGER},
+      </if>
+      <if test="currentSum != null" >
+        #{currentSum,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="disableDate != null" >
+        #{disableDate,jdbcType=DATE},
+      </if>
+      <if test="disableDays != null" >
+        #{disableDays,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="bids != null" >
+        #{bids,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=DATE},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="nameOfAuditor != null" >
+        #{nameOfAuditor,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.LoanformExample" resultType="java.lang.Integer" >
+    select count(*) from loanform
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update loanform
+    <set >
+      <if test="record.loanId != null" >
+        loan_id = #{record.loanId,jdbcType=INTEGER},
+      </if>
+      <if test="record.borrowUserId != null" >
+        borrow_user_id = #{record.borrowUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=INTEGER},
+      </if>
+      <if test="record.retrunType != null" >
+        retrun_type = #{record.retrunType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidRequestType != null" >
+        bid_request_type = #{record.bidRequestType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidRequestState != null" >
+        bid_request_state = #{record.bidRequestState,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidRequestAmount != null" >
+        bid_request_amount = #{record.bidRequestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.currentRate != null" >
+        current_rate = #{record.currentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="record.minBidAmount != null" >
+        min_bid_amount = #{record.minBidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.monthes2Return != null" >
+        monthes2_return = #{record.monthes2Return,jdbcType=INTEGER},
+      </if>
+      <if test="record.bidCount != null" >
+        bid_count = #{record.bidCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalRewardAmount != null" >
+        total_reward_amount = #{record.totalRewardAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.currentSum != null" >
+        current_sum = #{record.currentSum,jdbcType=DECIMAL},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.note != null" >
+        note = #{record.note,jdbcType=VARCHAR},
+      </if>
+      <if test="record.disableDate != null" >
+        disable_date = #{record.disableDate,jdbcType=DATE},
+      </if>
+      <if test="record.disableDays != null" >
+        disable_days = #{record.disableDays,jdbcType=INTEGER},
+      </if>
+      <if test="record.createUser != null" >
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bids != null" >
+        bids = #{record.bids,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=DATE},
+      </if>
+      <if test="record.publishTime != null" >
+        publish_time = #{record.publishTime,jdbcType=DATE},
+      </if>
+      <if test="record.auditorId != null" >
+        auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.nameOfAuditor != null" >
+        name_of_auditor = #{record.nameOfAuditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update loanform
+    set loan_id = #{record.loanId,jdbcType=INTEGER},
+      borrow_user_id = #{record.borrowUserId,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=INTEGER},
+      retrun_type = #{record.retrunType,jdbcType=INTEGER},
+      bid_request_type = #{record.bidRequestType,jdbcType=INTEGER},
+      bid_request_state = #{record.bidRequestState,jdbcType=INTEGER},
+      bid_request_amount = #{record.bidRequestAmount,jdbcType=DECIMAL},
+      current_rate = #{record.currentRate,jdbcType=DECIMAL},
+      min_bid_amount = #{record.minBidAmount,jdbcType=DECIMAL},
+      monthes2_return = #{record.monthes2Return,jdbcType=INTEGER},
+      bid_count = #{record.bidCount,jdbcType=INTEGER},
+      total_reward_amount = #{record.totalRewardAmount,jdbcType=INTEGER},
+      current_sum = #{record.currentSum,jdbcType=DECIMAL},
+      title = #{record.title,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      note = #{record.note,jdbcType=VARCHAR},
+      disable_date = #{record.disableDate,jdbcType=DATE},
+      disable_days = #{record.disableDays,jdbcType=INTEGER},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      bids = #{record.bids,jdbcType=VARCHAR},
+      apply_time = #{record.applyTime,jdbcType=DATE},
+      publish_time = #{record.publishTime,jdbcType=DATE},
+      auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      name_of_auditor = #{record.nameOfAuditor,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xykj.crowdfunding.reverse.pojo.Loanform" >
+    update loanform
+    <set >
+      <if test="borrowUserId != null" >
+        borrow_user_id = #{borrowUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="retrunType != null" >
+        retrun_type = #{retrunType,jdbcType=INTEGER},
+      </if>
+      <if test="bidRequestType != null" >
+        bid_request_type = #{bidRequestType,jdbcType=INTEGER},
+      </if>
+      <if test="bidRequestState != null" >
+        bid_request_state = #{bidRequestState,jdbcType=INTEGER},
+      </if>
+      <if test="bidRequestAmount != null" >
+        bid_request_amount = #{bidRequestAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="currentRate != null" >
+        current_rate = #{currentRate,jdbcType=DECIMAL},
+      </if>
+      <if test="minBidAmount != null" >
+        min_bid_amount = #{minBidAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="monthes2Return != null" >
+        monthes2_return = #{monthes2Return,jdbcType=INTEGER},
+      </if>
+      <if test="bidCount != null" >
+        bid_count = #{bidCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalRewardAmount != null" >
+        total_reward_amount = #{totalRewardAmount,jdbcType=INTEGER},
+      </if>
+      <if test="currentSum != null" >
+        current_sum = #{currentSum,jdbcType=DECIMAL},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="disableDate != null" >
+        disable_date = #{disableDate,jdbcType=DATE},
+      </if>
+      <if test="disableDays != null" >
+        disable_days = #{disableDays,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="bids != null" >
+        bids = #{bids,jdbcType=VARCHAR},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=DATE},
+      </if>
+      <if test="publishTime != null" >
+        publish_time = #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="nameOfAuditor != null" >
+        name_of_auditor = #{nameOfAuditor,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xykj.crowdfunding.reverse.pojo.Loanform" >
+    update loanform
+    set borrow_user_id = #{borrowUserId,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      retrun_type = #{retrunType,jdbcType=INTEGER},
+      bid_request_type = #{bidRequestType,jdbcType=INTEGER},
+      bid_request_state = #{bidRequestState,jdbcType=INTEGER},
+      bid_request_amount = #{bidRequestAmount,jdbcType=DECIMAL},
+      current_rate = #{currentRate,jdbcType=DECIMAL},
+      min_bid_amount = #{minBidAmount,jdbcType=DECIMAL},
+      monthes2_return = #{monthes2Return,jdbcType=INTEGER},
+      bid_count = #{bidCount,jdbcType=INTEGER},
+      total_reward_amount = #{totalRewardAmount,jdbcType=INTEGER},
+      current_sum = #{currentSum,jdbcType=DECIMAL},
+      title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      disable_date = #{disableDate,jdbcType=DATE},
+      disable_days = #{disableDays,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      bids = #{bids,jdbcType=VARCHAR},
+      apply_time = #{applyTime,jdbcType=DATE},
+      publish_time = #{publishTime,jdbcType=DATE},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      name_of_auditor = #{nameOfAuditor,jdbcType=VARCHAR}
+    where loan_id = #{loanId,jdbcType=INTEGER}
+  </update>
+</mapper>

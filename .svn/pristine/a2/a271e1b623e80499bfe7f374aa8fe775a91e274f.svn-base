@@ -1,0 +1,76 @@
+package com.xykj.crowdfunding.controller;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
+@Controller
+public class UploadController {
+	
+	/** 
+	 * 一次上传多张图片 
+	 */  
+	@RequestMapping("/multiFileUpload")  
+	public String threeFileUpload(  
+	        @RequestParam(value="goods_img",required=false) CommonsMultipartFile files[],  
+	        HttpServletRequest request, Map<String, Object>map) {  
+		System.out.println("进去了上传方法");
+	    List<String> list = new ArrayList<String>();  
+	    // 获得项目的路径  
+	    ServletContext sc = request.getSession().getServletContext();  
+	    // 上传位置  
+	    String path = sc.getRealPath("/img") + "/"; // 设定文件保存的目录  
+	    File f = new File(path);  
+	    if (!f.exists())  
+	        f.mkdirs();  
+	  
+	    for (int i = 0; i < files.length; i++) {  
+	        // 获得原始文件名  
+	        String fileName = files[i].getOriginalFilename();  
+	        System.out.println("原始文件名:" + fileName);  
+	        // 新文件名  
+	        String newFileName = UUID.randomUUID() + fileName;  
+	        if (!files[i].isEmpty()) {  
+	            try {  
+	                FileOutputStream fos = new FileOutputStream(path  
+	                        + newFileName);  
+	                InputStream in = files[i].getInputStream();  
+	                int b = 0;  
+	                while ((b = in.read()) != -1) {  
+	                    fos.write(b);  
+	                }  
+	                fos.close();  
+	                in.close();  
+	            } catch (Exception e) {  
+	                e.printStackTrace();  
+	            }  
+	        }  
+	        System.out.println("上传图片到:" + path + newFileName);  
+	        list.add(path + newFileName);  
+	  
+	    }  
+	    // 保存文件地址，用于JSP页面回显  ;
+	    map.put("fileList", list);
+	    return "success";  
+	  
+	}  
+	
+	@RequestMapping("/testSub")
+	public String testStr(HttpServletRequest request){
+		System.out.println("==========");
+		return "success";
+	}
+	
+}

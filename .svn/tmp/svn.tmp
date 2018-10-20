@@ -1,0 +1,344 @@
+package com.xykj.crowdfunding.controller;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.font.FontRenderContext;
+import java.awt.geom.Rectangle2D;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
+
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.xykj.crowdfunding.pojo.User;
+import com.xykj.crowdfunding.service.EasyUIUserService;
+import com.xykj.crowdfunding.service.UserService;
+import com.xykj.crowdfunding.utils.SendMsgUtil;
+
+
+@Controller
+
+public class UserController {
+	
+	@Autowired
+	private UserService userService;
+
+	/**
+	 * 获取验证码
+	 * @param response
+	 * @param session
+	 */
+	@RequestMapping(value="/getVerifyCode")
+	public void gerenate(HttpServletResponse response ,HttpSession session) {
+		ByteArrayOutputStream  output = new ByteArrayOutputStream();
+		System.out.println("获取验证码");
+		@SuppressWarnings("unused")
+		String verifyCodeValue = drawImg(output);
+		session.setAttribute("verifyCodeValue", verifyCodeValue);
+		try {
+			ServletOutputStream out = response.getOutputStream();
+			output.writeTo(out);
+			/*ImageIO.write(buffImg, "jpeg", out);
+			out.close();*/
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 绘画验证码
+	 * @param output
+	 * @return
+	 */
+	 
+	private String drawImg(ByteArrayOutputStream output) {
+		String code = "";
+		for(int i = 0;i< 4;i++) {
+			code+= randomChar();
+		}
+		int width = 70;
+		int height = 35;
+		BufferedImage bi = new BufferedImage(width, height,BufferedImage.TYPE_USHORT_555_RGB);
+		Font font = new Font("Times new Roman", Font.PLAIN, 20);
+	//调用Graphics2d绘画验证码
+		Graphics2D g = bi.createGraphics();
+		g.setFont(font);
+	    Color color = new Color(0,0,205);
+	    g.setColor(color);
+	    g.setBackground(new Color(255,255,224));
+	    g.clearRect(0,0, width, height);
+	    FontRenderContext context = g.getFontRenderContext();
+	    Rectangle2D bounds = font.getStringBounds(code, context);
+	    double x = (width - bounds.getWidth())/2;
+	    double y = (height - bounds.getHeight())/2;
+	    double ascent = bounds.getY();
+	    //干扰线
+	    Random random = new Random();
+	      for(int i=0;i<8;i++){
+	         int x1=random.nextInt(width);
+	         int y1=random.nextInt(height);
+	         int x2=random.nextInt(width);
+	         int y2=random.nextInt(height);
+	         g.drawLine(x1, y1, x1+x2, y1+y2);
+	      }
+	    @SuppressWarnings("unused")
+		double daseY = y - ascent;
+	    g.drawString(code, (int)x, 20);
+	    g.dispose();
+	    try {
+			ImageIO.write(bi, "jpg", output);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		return code;
+	}
+	
+	/**
+	 * 随机字符生成
+	 * @return
+	 */
+	private char randomChar() {
+		Random r = new Random();
+		String s = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+		return s.charAt(r.nextInt(s.length()));
+	}
+	
+
+	@RequestMapping("/checkVerifyCode")
+	public void checkInputVerfiCode(HttpServletRequest request,HttpServletResponse response,HttpSession session) throws IOException{
+		String inputVerfiCode = request.getParameter("verifyCode");
+		System.out.println("yanzhengmadezhi=====:"+inputVerfiCode);
+		String verifyCodeValue = (String) session.getAttribute("verifyCodeValue");
+	    System.out.println("sessionzhongd yanzhengmadezhi"+verifyCodeValue);
+	    if(verifyCodeValue.equals(inputVerfiCode.toUpperCase())) {
+	             
+	    	/*return new Result<String>(true, "输入验证ok", null) ;*/
+	    	System.out.println("验证码正确");
+	    	response.getWriter().write("√");
+	    }else {
+	    	System.out.println("验证码错误");
+	    	/*return new Result<String>(false, "输入验证码不正确", null) ;    }*/
+	    }
+	}
+
+	
+	@RequestMapping("/checkNameRegister")
+	public void checkNameRegister(@RequestParam("name")String name,HttpServletResponse response) throws IOException
+	{
+		boolean flag = userService.checkNameRegister(name);
+		if (flag) {
+			System.out.println("用户名已注册");
+			response.getWriter().write("用户名已注册");
+		}else {
+			System.out.println("用户名可用");
+			response.getWriter().write("√");
+		}
+		
+	}
+
+	@RequestMapping("/checkPhoneRegister")
+	public void checkPhoneRegister(@RequestParam("phone")String phone,HttpServletResponse response) throws IOException
+	{
+		boolean flag = userService.checkPhoneRegister(phone);
+		if (flag) {
+			System.out.println("手机号已注册");
+			response.getWriter().write("手机号已注册");
+		}else {
+			System.out.println("手机号可用");
+			response.getWriter().write("√");
+		}
+		
+	}
+
+	@RequestMapping("/register")
+	public String register(@RequestParam("name")String name,
+			@RequestParam("password")String password,@RequestParam("phone") String phone)
+	{
+		System.out.println("注册");
+		//user_id,name,password,phone
+	
+		User user = new User(UUID.randomUUID().toString(), name, password, phone);
+		boolean flag = userService.register(user);
+		if (flag) {
+			//注册成功 跳转到登录界面
+			System.out.println("注册成功。。");
+			return "login";
+		}
+		//注册失败
+		System.out.println("注册失败");
+		return "register";
+		
+	}
+	
+	/**
+	 * 登录
+	 * @param name	用户名
+	 * @param password	密码
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(@RequestParam("name")String name,@RequestParam("password")String password,HttpServletRequest request){
+		User user = userService.login(name, password);
+		
+		if (user!=null) {
+			//登录成功
+			request.getSession().setAttribute("user", user);
+			System.out.println("登录成功");
+			//重定向到首页
+			return "redirect:/index.jsp";
+		}
+		return "success";
+	}
+	
+	@RequestMapping("/logout")
+	public String logOut(HttpServletRequest request,HttpServletResponse response){
+		request.getSession().invalidate();
+		System.out.println("注销了");
+		return "redirect:/login.jsp";
+	}
+	@RequestMapping("/getUserById")
+	public String getUserById(@RequestParam("userid")String userid,Map<String,Object>map){
+		User user = userService.getUserById(userid);
+		map.put("user", user);
+		System.out.println("====>user: "+user);
+		return "success";
+	}
+
+	@RequestMapping("/emailTo")
+	public String emailTo(@RequestParam("email")String email)
+	{
+		
+		return "success";
+	}
+	
+	
+
+@ResponseBody
+@RequestMapping(value="sendme" ,method = RequestMethod.GET)
+public ModelAndView sendme(@RequestParam(value="phone") String phone,HttpServletRequest request) throws  IOException{
+     ModelAndView model = new ModelAndView();
+     if(!userService.checkPhoneRegister(phone)){//查找是否被注册
+      HashMap<String, String> m = SendMsgUtil.getMessageStatus(phone); //应用发送短信接口  
+      String result = m.get("result");   //获取到result值  
+           if (result.trim().equals("1")) {  
+                 String code = m.get("code");
+                 System.out.println(code+"============================================================================");
+ 
+                 HttpSession  session = request.getSession(); //设置session  
+                 session.setAttribute(phone+"code", code);    //将短信验证码放到session中保存  
+                 session.setMaxInactiveInterval(60 * 3); //缓存设置3分钟
+                 System.out.println("发送成功");
+                 model.addObject("flag", "短信发送成功");
+              }else{
+                 model.addObject("flag", "短信发送失败,请重试");
+             }
+                 model.addObject("phone", phone);
+                 model.setViewName("phone");
+          }else{
+               model.addObject("flag1", "该手机号已被注册");
+               model.addObject("phone", phone);
+               model.setViewName("phone");
+           }
+               return model;
+ 
+}
+ 
+
+@RequestMapping(value="phone")
+public String phone() {
+	return "phone";
+}
+
+ 
+/*@RequestMapping(value="comparecode" ,method = RequestMethod.POST)
+public ModelAndView comparecode(@RequestParam(value="code") String code,Phone pmodel,HttpServletRequest request){
+ModelAndView model = new ModelAndView();
+       //从session中比对发送的验证码
+       HttpSession  session = request.getSession();//设置session
+       String sessioncode =(String) session.getAttribute(pmodel.getPhone()+"code");
+       System.out.println(sessioncode);
+     if((code).equals(sessioncode)){//比对缓存
+	       //注册
+          service.registUser(pmodel);
+          model.addObject("result", "注册成功");
+      }else{
+    	  
+        model.addObject("result", "验证码不正确 ，注册失败");
+        model.setViewName("phone");
+ 
+      }
+     model.setViewName("result");
+     return model;
+ 
+}*/
+
+
+	@RequestMapping("/getUsers")
+	public String getUsers(Map<String,Object>map)
+	{
+		List<User> list = userService.getUsers();
+		map.put("list", list);
+		return "success";
+	}
+
+	
+	
+	/**
+	 * 修改密码
+	 * @param userId	用户id
+	 * @param oldPassword	旧密码
+	 * @param newPassword	新密码
+	 * @param confirmPassword	确认密码
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/updatePassword")
+	public String updatePassWord(@RequestParam("userId")String userId,@RequestParam("oldPassword")String oldPassword,@RequestParam("newPassword")String newPassword,@RequestParam("confirmPassword")String confirmPassword,HttpServletRequest request)
+	{
+		System.out.println(userId+"===>"+oldPassword+"===>"+newPassword+"===>"+confirmPassword);
+	/*	if (userId == null || oldPassword == null|| newPassword == null|| confirmPassword == null) {
+			
+		}*/
+		//补充判断 空/相等
+		
+		User user = userService.getUserById(userId);
+		//判断 旧密码是否正确
+		if (!user.getPassword().equals(oldPassword)) {
+			
+			//返回
+			
+		}else {
+		
+			
+			
+		}
+		
+		return "success";
+	}
+
+	
+	
+}

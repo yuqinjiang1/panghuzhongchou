@@ -1,0 +1,140 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>数据字典分组</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<div>
+		&emsp;&emsp;关键字<input  type="text" class="easyui-textbox"/>
+		<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" id="searchByDate" onclick="doSearchUser()">查询</a>
+		&emsp;&emsp;&emsp;<a href="#" class="easyui-linkbutton" onclick="addDic()">添加数据字明细</a>
+	</div>
+	<br/>
+	<div id="tt" class="easyui-tabs" style="width:700px;height:250px">
+<!-- 		<div title="About" style="padding:10px">			
+		</div>
+		<div title="My Documents" style="padding:10px">
+			h
+		</div>
+		<div title="Help"  style="padding:10px">
+			This is the help content.这是数据字
+		</div> -->
+	</div>
+	
+	<script type="text/javascript">
+	$(function(){
+		console.log("=================");
+		$('#tt').tabs(
+				{tabPosition:'left'
+					});
+	});
+	
+	$(function(){
+		$.ajax({
+			url:"${pageContext.request.contextPath}/getDicAndItemsById",
+			dataType:"json",
+			method:"get",
+			success:function(data){
+				console.log("成功 data"+data);
+				 $(data).each(function(i,pro){
+					/* $("#province").append("<option>"+pro.name+"</option>"); */
+					console.log("i: "+i+" pro: "+pro+" pro.dicId: "+pro.dicId);
+						addTab(pro.dicName,pro.items);
+						if(pro.dicId==1)
+						{
+							console.log("月收入items: "+pro.items);
+							$("#monthlyIncome").combobox({
+								data:pro.items,  
+								valueField:'itemValue',
+								textField:'itemName',
+							/* 	 onLoadSuccess : function(){
+								    $('#monthlyIncome').combobox('setValue','5');
+								}  */
+							});
+						}
+						else if(pro.dicId==2)
+						{
+							console.log("子女情况items: "+pro.items);
+							$("#stateofChildren").combobox({
+								data:pro.items,  
+								valueField:'itemValue',
+								textField:'itemName',
+								/* onLoadSuccess : function(){
+								    $('#stateofChildren').combobox('setValue','5');
+								} */
+							});
+						}
+						else if(pro.dicId==3)
+						{
+							console.log("学历情况items: "+pro.items);
+							 $("#education").combobox({
+									data:pro.items,  
+									valueField:'itemValue',
+									textField:'itemName',
+									onLoadSuccess : function(){
+									    $('#education').combobox('setValue','5');
+									}
+								});
+						}
+						else if(pro.dicId==4)
+						{
+							console.log("住房条件items: "+pro.items);
+							 $("#houseCondition").combobox({
+									data:pro.items,  
+									valueField:'itemValue',
+									textField:'itemName',
+									/* onLoadSuccess : function(){
+									    $('#houseCondition').combobox('setValue','5');
+									} */
+								});
+						}
+						else if(pro.dicId==5)
+						{
+							console.log("婚姻情况items: "+pro.items);
+							$("#maritalStatus").combobox({
+								data:pro.items,  
+								valueField:'itemValue',
+								textField:'itemName',
+								/* onLoadSuccess : function(){
+								    $('#maritalStatus').combobox('setValue','5');
+								} */
+							});
+						}
+				 }); 
+			},
+			error:function(data){
+				console.log("失败");
+			}
+		});
+	})
+	
+	function addTab(title,content){
+		console.log("content===>"+content);
+    if ($('#tt').tabs('exists', title)) {
+        $('#tt').tabs('select',title)
+    } else {
+        $('#tt').tabs('add',{
+            title:title,
+            closable:true,
+            content:"呵呵"
+        });
+    }
+}
+
+
+	
+</script>
+	
+</body>
+</html>

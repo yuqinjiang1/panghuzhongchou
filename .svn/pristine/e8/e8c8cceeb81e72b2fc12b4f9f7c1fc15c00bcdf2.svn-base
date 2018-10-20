@@ -1,0 +1,29 @@
+
+.creditloan
+{
+	float: left;
+}
+
+.carloan{
+	float:left;
+	margin-left: 30px;
+}
+.hcondition{
+	color: #4e89b7;
+	
+}
+.hpd{
+	padding: 5px;
+}
+.borrowul
+{
+	list-style-image: url("../images/redicon.png");
+}
+.borrowul li{
+	padding: 5px;
+}
+.paddress{
+	color: #a8adb9;
+	font-size: 12px;
+	padding: 5px;
+}

@@ -1,0 +1,26 @@
+package com.xykj.crowdfunding.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.xykj.crowdfunding.reverse.dao.BidobjectMapper;
+import com.xykj.crowdfunding.reverse.pojo.Bidobject;
+import com.xykj.crowdfunding.service.BidobjectService;
+
+@Service
+public class BidobjectServiceImpl implements BidobjectService {
+	
+	@Autowired
+	private BidobjectMapper bidobjectMapper;
+
+	@Override
+	public boolean addBid(Bidobject bidobject) {
+		
+		int i = bidobjectMapper.insert(bidobject);
+		if (i > 0) {
+			return true;
+		}
+		return false;
+	}
+
+}

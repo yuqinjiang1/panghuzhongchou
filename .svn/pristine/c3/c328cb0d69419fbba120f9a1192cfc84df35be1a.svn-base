@@ -1,0 +1,33 @@
+package com.xykj.crowdfunding.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.xykj.crowdfunding.reverse.pojo.Bidobject;
+import com.xykj.crowdfunding.service.BidobjectService;
+import com.xykj.crowdfunding.utils.P2PResult;
+
+@Controller
+@RequestMapping("/bid")
+public class BidobjectController {
+	@Autowired
+	private BidobjectService oService;
+	
+	@ResponseBody
+	@RequestMapping("/addBid")
+	public P2PResult addSysDataDic(Bidobject bidobj)
+	{
+		boolean flag = oService.addBid(bidobj);
+		
+		if (flag) {
+				System.out.println("投标成功");
+				return P2PResult.build(1, "投标成功");
+		}else {
+			System.out.println("投标失败");
+			return P2PResult.build(0, "投标失败");
+		}
+	}
+
+}

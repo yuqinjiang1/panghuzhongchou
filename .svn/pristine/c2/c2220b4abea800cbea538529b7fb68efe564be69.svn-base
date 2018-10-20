@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>欢迎页</title>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+
+		<script type="text/javascript" src="easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		
+	<script type="text/javascript">
+		$(function(){
+			$('#tt').tabs(
+					{tabPosition:'left'
+						});
+		})
+		function yzma(){
+			//判断用户输入的验证码是否正确
+			//获取用户输入的验证码
+			var code = $("input[name=image]").val();
+			//一般验证用户输入的验证码会采用Ajax验证
+				 $.post("checkVerifyCode","verifyCode="+code,function(data){
+					/* alert(data); */
+				}); 
+			}
+		//刷新验证码图片
+		function reflushImg(){
+			var src = $("#imgcode").attr("src");
+			//时间戳
+			$("#imgcode").attr("src",src+"?time="+new Date().getTime());
+			return false;
+		}
+	</script>
+</head>
+<body>
+
+	
+	<!-- <div  class="easyui-layout" data-options="fit:true">
+		<div data-options="region:'north'" style="height:50px"></div>
+		<div data-options="region:'south',split:true" style="height:50px;"></div>
+		<div data-options="region:'east',split:true" title="East" style="width:180px;">
+			<ul class="easyui-tree" data-options="url:'tree_data1.json',method:'get',animate:true,dnd:true"></ul>
+		</div>
+		<div data-options="region:'west',split:true" title="Look here~" style="width:100px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="首页" style="padding:10px">
+					<a href="#">index</a>
+				</div>
+				<div title="我要登录"  style="padding:10px;">
+					<a href="#">login</a>
+				</div>
+				<div title="我要注册" style="padding:10px">
+					<a href="#">register</a>
+				</div>			
+				<div title="我要借款" style="padding:10px">
+					<a href="#">borrow</a>
+				</div>
+				<div title="我要投资" style="padding:10px">
+					<a href="#">invest</a>
+				</div>
+			</div>
+		</div>
+		
+		<div data-options="region:'center',title:'P2P金融平台      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 您好，欢迎来到P2P平台！ '">
+			<div class="easyui-tabs" data-options="fit:true,border:false,plain:true">
+				<div title="About"  style="padding:10px">
+					<img alt="" src="/../img/01.png"/>
+				</div>
+				<div title="DataGrid" style="padding:5px">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+ -->
+
+	 <a href="login?name=李四&password=123456">login</a>
+	<br/>
+	<a href="backstage.jsp">backstage</a>
+	<br/>
+	<a href="register?name=王五&password=123456&phone=13866874532">register</a>
+	
+	<br/>
+	验证码:<input type="text" name="image" onblur="yzma()"/>
+		<img id="imgcode" src="getVerifyCode" onclick="reflushImg()" title="点击图片刷新"/>
+		<a href="#" onclick="reflushImg()">点击刷新图片</a>
+	<a href="getVerifyCode">getVerifyCode</a>
+	<br/>
+	<a href="checkNameRegister?name=李四">判断用户名 张三是否被注册</a>
+	<br/>
+		<a href="checkNameRegister?name=aa">判断用户名aa是否被注册</a>
+	<br/>
+	<a href="checkPhoneRegister?phone=13532469255">判断手机号13532469255是否被注册</a>
+	
+	<br/>
+	<a href="checkPhoneRegister?phone=8888888">判断手机号8888888是否被注册</a>
+
+	<br/>
+	<a href="getUsers">getUsers</a>
+	
+	<br/>
+	
+	上传图片
+	<form action="file/imgupload" method="post" enctype="multipart/form-data">
+		file:<input type="file" name="filename"/><br/>
+		desc:<input type="text" name="desc"/><br/>
+		<input type="submit" value="上传图片"/>
+	</form>
+	
+	<br/>
+	上传图片
+	<form action="filesUpload" method="POST" name="xiangmu" id="xiangmu"
+        enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>身份证图片上传：</td>
+                <td><input type=file name="myfiles" id="doc"
+                    onchange="showImage();">
+                </td>
+                <div id="localImag">
+                    <img id="preview" width=-1 height=-1 style="diplay:none" />
+                </div>
+            </tr>
+            <tr>
+                <td>公司运营情况:</td>
+                <!-- 为了实现张图片上传，上传框这个name要都一样 -->
+                <td><input type="file" name="myfiles" id="doc1"></td>
+                <td>                    
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="提交" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+	<br/>
+	
+		<br/><br/>
+	<a href="getItemsById?dicid=1">getItemsById通过id获取数据明细</a>
+	<a href="getItemsById">getItemsById通过不传id获取数据明细</a>
+	
+	
+	<br/><br/>
+	<a href="getDicAndItemsById?dicid=1">getDicAndItemsById通过id获取字典和明细</a>
+	<a href="getDicAndItemsById">getDicAndItemsById通过不传id获取数据字典和明细</a>
+	
+	<br/><br/>
+	<a href="getItems?dic_name=月收入">getDicItems</a>
+	<a href="getItems">getDicItems 无参数</a>
+	<br/><br/>
+	
+	<a href="getDicAndItems?dic_name=月收入">getDicAndItems</a>
+	<a href="getDicAndItems">getDicAndItems 无参数</a>
+
+	<br><br/>
+	<a href="getPreLoanAuditList">发标前审核getPreLoanAuditList</a>
+
+	<a href="bid/addBid">addBid 投标 ...要传对应的用户id和借款id</a>
+ 
+
+	
+	
+
+</body>
+</html>

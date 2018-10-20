@@ -1,0 +1,12 @@
+package com.xykj.crowdfunding.service;
+
+import java.util.List;
+
+import com.xykj.crowdfunding.reverse.pojo.Systemdictionaryitem;
+
+
+public interface SystemdictionaryitemService {
+	
+	List<Systemdictionaryitem> getItemsById(Integer dic_id);
+
+}

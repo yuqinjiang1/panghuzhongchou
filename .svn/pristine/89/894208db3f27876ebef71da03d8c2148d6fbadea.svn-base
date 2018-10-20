@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.xykj.crowdfunding.dao.UserDao">
+ 		<!-- 注册 -->
+ 		<insert id="register" parameterType="com.xykj.crowdfunding.pojo.User">
+ 			insert into user (user_id,name,password,phone) values(#{userId},#{name},#{password},#{phone})
+ 		</insert>
+ 		<select id="getUserByNameAndPassWord" resultType="com.xykj.crowdfunding.pojo.User">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user where name=#{0} and password=#{1}
+ 		</select>
+ 	
+ 		<!-- 根据id查找用户 -->
+ 		<select id="getUserById" parameterType="String" resultType="com.xykj.crowdfunding.pojo.User">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user where user_id=#{userid}
+ 		</select>
+ 		
+ 		
+ 
+ </mapper>
+ 

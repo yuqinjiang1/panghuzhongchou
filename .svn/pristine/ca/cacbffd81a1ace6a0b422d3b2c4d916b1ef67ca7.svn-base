@@ -1,0 +1,31 @@
+package com.xykj.ssm.test;
+
+import java.util.Date;
+
+import org.junit.Test;
+
+import com.xykj.crowdfunding.utils.P2pDateUtils;
+
+public class DateTest {
+
+	@Test
+	public void test()
+	{
+		Date date = new Date();
+		System.out.println("日期转字符串：" + P2pDateUtils.DateToStr(date,"yyyy-MM-dd"));
+		System.out.println("字符串转日期：" + P2pDateUtils.StrToDate(P2pDateUtils.DateToStr(date,"yyyy-MM-dd"),"yyyy-MM-dd"));
+	}
+
+	@Test
+	public void testDate()
+	{
+		Date olddate = P2pDateUtils.StrToDate("2018-10-5 17:53:00", "yyyy-MM-dd HH:mm:ss");
+		Date newDate = P2pDateUtils.StrToDate(P2pDateUtils.DateToStr(new Date(),"yyyy-MM-dd HH:mm:ss"),"yyyy-MM-dd HH:mm:ss");
+		
+		System.out.println("oldDate: "+olddate);
+		System.out.println("newDate: "+newDate);
+		long time = newDate.getTime()- olddate.getTime();
+		long result = time/1000/60/60;
+		System.out.println("result: "+result);
+	}
+}

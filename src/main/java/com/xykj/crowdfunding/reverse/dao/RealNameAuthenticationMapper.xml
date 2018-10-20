@@ -1,0 +1,323 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xykj.crowdfunding.reverse.dao.RealNameAuthenticationMapper" >
+  <resultMap id="BaseResultMap" type="com.xykj.crowdfunding.reverse.pojo.RealNameAuthentication" >
+    <id column="real_name_authentication_id" property="realNameAuthenticationId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="identification_number" property="identificationNumber" jdbcType="VARCHAR" />
+    <result column="birth_date" property="birthDate" jdbcType="DATE" />
+    <result column="identification_address" property="identificationAddress" jdbcType="VARCHAR" />
+    <result column="id_card_photo" property="idCardPhoto" jdbcType="VARCHAR" />
+    <result column="auditor_id" property="auditorId" jdbcType="VARCHAR" />
+    <result column="auditor" property="auditor" jdbcType="VARCHAR" />
+    <result column="audit_status" property="auditStatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    real_name_authentication_id, user_id, username, name, sex, identification_number, 
+    birth_date, identification_address, id_card_photo, auditor_id, auditor, audit_status
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthenticationExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from real_name_authentication
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from real_name_authentication
+    where real_name_authentication_id = #{realNameAuthenticationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from real_name_authentication
+    where real_name_authentication_id = #{realNameAuthenticationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthenticationExample" >
+    delete from real_name_authentication
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthentication" >
+    insert into real_name_authentication (real_name_authentication_id, user_id, 
+      username, name, sex, 
+      identification_number, birth_date, identification_address, 
+      id_card_photo, auditor_id, auditor, 
+      audit_status)
+    values (#{realNameAuthenticationId,jdbcType=INTEGER}, #{userId,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{identificationNumber,jdbcType=VARCHAR}, #{birthDate,jdbcType=DATE}, #{identificationAddress,jdbcType=VARCHAR}, 
+      #{idCardPhoto,jdbcType=VARCHAR}, #{auditorId,jdbcType=VARCHAR}, #{auditor,jdbcType=VARCHAR}, 
+      #{auditStatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthentication" >
+    insert into real_name_authentication
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="realNameAuthenticationId != null" >
+        real_name_authentication_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="identificationNumber != null" >
+        identification_number,
+      </if>
+      <if test="birthDate != null" >
+        birth_date,
+      </if>
+      <if test="identificationAddress != null" >
+        identification_address,
+      </if>
+      <if test="idCardPhoto != null" >
+        id_card_photo,
+      </if>
+      <if test="auditorId != null" >
+        auditor_id,
+      </if>
+      <if test="auditor != null" >
+        auditor,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="realNameAuthenticationId != null" >
+        #{realNameAuthenticationId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="identificationNumber != null" >
+        #{identificationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null" >
+        #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="identificationAddress != null" >
+        #{identificationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardPhoto != null" >
+        #{idCardPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null" >
+        #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthenticationExample" resultType="java.lang.Integer" >
+    select count(*) from real_name_authentication
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update real_name_authentication
+    <set >
+      <if test="record.realNameAuthenticationId != null" >
+        real_name_authentication_id = #{record.realNameAuthenticationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.username != null" >
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sex != null" >
+        sex = #{record.sex,jdbcType=INTEGER},
+      </if>
+      <if test="record.identificationNumber != null" >
+        identification_number = #{record.identificationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.birthDate != null" >
+        birth_date = #{record.birthDate,jdbcType=DATE},
+      </if>
+      <if test="record.identificationAddress != null" >
+        identification_address = #{record.identificationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.idCardPhoto != null" >
+        id_card_photo = #{record.idCardPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditorId != null" >
+        auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditor != null" >
+        auditor = #{record.auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditStatus != null" >
+        audit_status = #{record.auditStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update real_name_authentication
+    set real_name_authentication_id = #{record.realNameAuthenticationId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      username = #{record.username,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      sex = #{record.sex,jdbcType=INTEGER},
+      identification_number = #{record.identificationNumber,jdbcType=VARCHAR},
+      birth_date = #{record.birthDate,jdbcType=DATE},
+      identification_address = #{record.identificationAddress,jdbcType=VARCHAR},
+      id_card_photo = #{record.idCardPhoto,jdbcType=VARCHAR},
+      auditor_id = #{record.auditorId,jdbcType=VARCHAR},
+      auditor = #{record.auditor,jdbcType=VARCHAR},
+      audit_status = #{record.auditStatus,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthentication" >
+    update real_name_authentication
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="identificationNumber != null" >
+        identification_number = #{identificationNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="birthDate != null" >
+        birth_date = #{birthDate,jdbcType=DATE},
+      </if>
+      <if test="identificationAddress != null" >
+        identification_address = #{identificationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardPhoto != null" >
+        id_card_photo = #{idCardPhoto,jdbcType=VARCHAR},
+      </if>
+      <if test="auditorId != null" >
+        auditor_id = #{auditorId,jdbcType=VARCHAR},
+      </if>
+      <if test="auditor != null" >
+        auditor = #{auditor,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where real_name_authentication_id = #{realNameAuthenticationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xykj.crowdfunding.reverse.pojo.RealNameAuthentication" >
+    update real_name_authentication
+    set user_id = #{userId,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      identification_number = #{identificationNumber,jdbcType=VARCHAR},
+      birth_date = #{birthDate,jdbcType=DATE},
+      identification_address = #{identificationAddress,jdbcType=VARCHAR},
+      id_card_photo = #{idCardPhoto,jdbcType=VARCHAR},
+      auditor_id = #{auditorId,jdbcType=VARCHAR},
+      auditor = #{auditor,jdbcType=VARCHAR},
+      audit_status = #{auditStatus,jdbcType=INTEGER}
+    where real_name_authentication_id = #{realNameAuthenticationId,jdbcType=INTEGER}
+  </update>
+</mapper>

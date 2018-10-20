@@ -1,0 +1,127 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>实名认证审核</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/easyui/themes/icon.css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/locale/easyui-lang-zh_CN.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.serializejson.min.js"></script>
+	
+
+ <script>
+
+	$(function(){
+
+
+
+	});
+     function lookImg(){
+         var f = $("#fb").next().find('input[type=file]')[0];
+        if (f.files && f.files[0]){
+// 更换图片时清空原图片展示内容
+            $('#addImage').html('');
+            var allowExtention=".jpg,.bmp,.gif,.png";
+             for(var i=0;i<f.files.length;i++){
+            	 
+                var reader = new FileReader(f.files[i]);
+                reader.onload = function(e){
+//append为在元素中的末尾添加内容
+                    $('#addImage').append("<img src='"+e.target.result+"'width='100px;''height='100px;'/>");
+                }
+                reader.readAsDataURL(f.files[i]);
+             }
+        }
+    } 
+    
+
+
+    </script>
+</head>
+<body >
+
+
+	<div class="easyui-panel" title="实名认证" style="width: 100%;">
+
+		<div style="margin: 0 auto;width: 60%">
+
+			<form id="ff" method="post" action="${pageContext.request.contextPath}/multiFileUpload"
+				enctype="multipart/form-data">
+
+				<table cellpadding="5">
+				
+					<tr>
+						<td colspan="2" style="color: red;">
+							为保护您账户安全，实名认证成功之后不能修改信息，请认真填写！</td>
+					</tr>
+					<tr>
+						<td>用户名</td>
+						<td><input class="easyui-textbox" type="text" name="name"
+							data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td><input type="radio" name="gender" value="男"><span>男</span>
+							<input type="radio" name="gender" value="女"><span>女</span></td>
+					</tr>
+					<tr>
+						<td>证件号码</td>
+						<td><input class="easyui-textbox" type="text" name="idCard"
+							data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td><input class="easyui-textbox" type="text" name="birthday"
+							data-options="multiline:true"></input></td>
+					</tr>
+					<tr>
+						<td>证件地址</td>
+						<td><input class="easyui-textbox" type="text"
+							name="birthplace" data-options="multiline:true"></input></td>
+					<tr> 
+						<td>身份证正反照片</td>
+						<td>
+							<div>
+									<input id="fb" class="easyui-filebox"name="goods_img"
+											data-options="label:'图片上传',prompt:'选择图片（2M以内）',onChange:lookImg "multiple>
+									<div style=" margin-bottom:20px;hebackground-color: red"id="addImage"></div>
+							</div>
+
+						</td>
+					</tr>
+
+				</table>
+			</form>
+			<div style="margin-bottom: 20px" id="addImage"></div>
+			<div style="text-align: center; padding: 5px">
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a> 
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>
+
+			</div>
+		</div>
+	</div>
+
+
+	<script>
+ 		function submitForm() {
+			$('#ff').form('submit');
+		} 
+		
+
+	</script> 
+	
+
+	
+	
+</body>
+</html>

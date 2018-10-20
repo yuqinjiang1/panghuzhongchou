@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+		<!-- 需要先导入jquery的文件，再导入easyUI文件 -->
+		<script type="text/javascript" src="easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css"  href="css/login.css">
+		<link rel="stylesheet" type="text/css"  href="css/base.css">
+</head>
+<body>
+<div id="loginBox" class="easyui-panel" title="登录" >
+		<div style="padding:10px 60px 20px 60px">
+	    <form id="ff" method="post">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>用户名:</td>
+	    			<td><input class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>密码:</td>
+	    			<td><input class="easyui-textbox" type="text" name="email" data-options="required:true,validType:'email'"></input></td>
+	    		</tr>
+	    	</table>
+	    </form>
+	    <div style="text-align:center;padding:5px">
+	    	<a id="login" href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">登录</a>
+	    	<a id="register" href="javascript:void(0)">新用户,马上注册</a>
+	    </div>
+	    </div>
+	</div>
+
+</body>
+</html>

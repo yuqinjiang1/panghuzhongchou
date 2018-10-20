@@ -1,0 +1,39 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@include file="head.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>首页</title>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css"/>
+		<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css"/>
+		<!-- 需要先导入jquery的文件，再导入easyUI文件 -->
+		<script type="text/javascript" src="easyui/jquery.min.js"></script>
+		<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css"  href="css/base.css">
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+</head>
+<body>
+
+
+	<div id="container">
+
+		<!-- 左边部分 -->
+		<div id="left">
+			<!-- 借贷项目 -->
+			<div id="jiedai" class="easyui-panel" title="借贷项目"
+				 padding: 10px; background: #fafafa;">
+				
+			</div>
+		</div>
+
+
+		<!-- 右边部分 -->
+		<div id="right"></div>
+	</div>
+
+
+</body>
+</html>

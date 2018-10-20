@@ -1,0 +1,14 @@
+package com.xykj.crowdfunding.service;
+
+import com.xykj.crowdfunding.reverse.pojo.Bidobject;
+
+public interface BidobjectService {
+	
+	/**
+	 * 新增投标
+	 * @param bidobject
+	 * @return
+	 */
+	public boolean addBid(Bidobject bidobject);
+
+}

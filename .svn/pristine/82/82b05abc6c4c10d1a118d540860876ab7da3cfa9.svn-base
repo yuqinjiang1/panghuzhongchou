@@ -1,0 +1,75 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户注册</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/locale/easyui-lang-zh_CN.js"></script>
+<style type="text/css">
+	input{
+		width:250px;
+	}
+</style>
+</head>
+<body>
+		<h3>填写注册信息</h3>
+	<form id="ff" method="post">
+	    	<table cellpadding="5">
+	    		<tr>
+	    			<td>用户名</td>
+	    			<td><input  type="text" name="name"  placeholder="用户名为2~16位字母、数字或中文"
+	    								class="easyui-validatebox" data-options="required:true"> 提示：请勿使用真实姓名</input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>密码</td>
+	    			<td><input  type="text" name="email" placeholder="长度为6~16位，不能是纯数字或字母" 
+	    								class="easyui-validatebox" data-options="required:true"validType:'email'"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>重复密码</td>
+	    			<td><input  type="text" name="subject" placeholder="请再次填写密码"
+	    							class="easyui-validatebox" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>验证码</td>
+	    			<td><input  type="text" name="subject" placeholder="验证码"
+	    								class="easyui-validatebox" data-options="required:true">
+	    			<a href="#" class="easyui-linkbutton" onclick="#">dbz3</a>
+	    			</input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>手机号码</td>
+	    			<td><input  type="text" name="email" placeholder="请填写手机号码"
+	    								class="easyui-validatebox" data-options="required:true"></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>手机验证码</td>
+	    			<td><input  type="text" name="email" validType:'email'" placeholder="填写手机收到的短信验证码"
+	    								class="easyui-validatebox" data-options="required:true">
+	    								<a href="#" class="easyui-linkbutton" onclick="#">发送手机验证码</a></input></td>
+	    		</tr>
+	    		<tr>
+	    			<td>推荐码</td>
+	    			<td><input type="text" name="email" validType:'email'" placeholder="借款学员请联系机构老师"
+	    								class="easyui-validatebox" data-options="required:true"></input></td>
+	    		</tr>
+	    		
+	    		<tr>
+	    			<td colspan="2">
+	    			<a href="#" class="easyui-linkbutton" onclick="#">《鸿学金信网站服务协议》</a>
+	    			</td>    			
+	    		</tr>
+	    		<tr>
+	    			<td colspan="2" >
+	    			<a href="#" class="easyui-linkbutton" onclick="#">同意协议并注册</a>
+	    			</td>
+	    		</tr>
+	    	</table>
+	    </form>
+</body>
+</html>

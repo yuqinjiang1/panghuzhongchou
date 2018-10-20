@@ -1,0 +1,51 @@
+package com.xykj.crowdfunding.controller;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.xykj.crowdfunding.pojo.User;
+import com.xykj.crowdfunding.service.UserService;
+
+@Controller
+public class UserController {
+	
+	@Autowired
+	private UserService userService;
+	/**
+	 * 登录
+	 * @param name	用户名
+	 * @param password	密码
+	 * @param map
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(@RequestParam("name")String name,@RequestParam("password")String password,Map<String,Object>map){
+		boolean flag = userService.login(name, password);
+		map.put("flag", flag);
+		System.out.println("====>flag: "+flag);
+		
+		return "success";
+	}
+	
+	@RequestMapping("/getUserById")
+	public String getUserById(@RequestParam("userid")String userid,Map<String,Object>map){
+		User user = userService.getUserById(userid);
+		map.put("user", user);
+		System.out.println("====>user: "+user);
+		return "success";
+	}
+
+	@RequestMapping("/emailTo")
+	public String emailTo(@RequestParam("email")String email)
+	{
+		
+		return "success";
+	}
+	
+	
+	
+}

@@ -1,0 +1,104 @@
+package com.xykj.crowdfunding.reverse.pojo;
+
+public class SysMenu {
+    private Integer menuId;
+
+    private String parentid;
+
+    private String menuName;
+
+    private String menuUrl;
+
+    private String menuIcon;
+
+    private String menuInfo;
+
+    private Integer sort;
+
+    private Boolean isShow;
+
+    private Integer powerId;
+
+    public Integer getMenuId() {
+        return menuId;
+    }
+
+    public void setMenuId(Integer menuId) {
+        this.menuId = menuId;
+    }
+
+    public String getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(String parentid) {
+        this.parentid = parentid == null ? null : parentid.trim();
+    }
+
+    public String getMenuName() {
+        return menuName;
+    }
+
+    public void setMenuName(String menuName) {
+        this.menuName = menuName == null ? null : menuName.trim();
+    }
+
+    public String getMenuUrl() {
+        return menuUrl;
+    }
+
+    public void setMenuUrl(String menuUrl) {
+        this.menuUrl = menuUrl == null ? null : menuUrl.trim();
+    }
+
+    public String getMenuIcon() {
+        return menuIcon;
+    }
+
+    public void setMenuIcon(String menuIcon) {
+        this.menuIcon = menuIcon == null ? null : menuIcon.trim();
+    }
+
+    public String getMenuInfo() {
+        return menuInfo;
+    }
+
+    public void setMenuInfo(String menuInfo) {
+        this.menuInfo = menuInfo == null ? null : menuInfo.trim();
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    public Boolean getIsShow() {
+        return isShow;
+    }
+
+    public void setIsShow(Boolean isShow) {
+        this.isShow = isShow;
+    }
+
+    public Integer getPowerId() {
+        return powerId;
+    }
+
+    public void setPowerId(Integer powerId) {
+        this.powerId = powerId;
+    }
+
+	@Override
+	public String toString() {
+		return "SysMenu [menuId=" + menuId + ", parentid=" + parentid
+				+ ", menuName=" + menuName + ", menuUrl=" + menuUrl
+				+ ", menuIcon=" + menuIcon + ", menuInfo=" + menuInfo
+				+ ", sort=" + sort + ", isShow=" + isShow + ", powerId="
+				+ powerId + "]";
+	}
+    
+    
+}

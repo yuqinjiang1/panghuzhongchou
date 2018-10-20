@@ -1,0 +1,242 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>数据字典分组</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/easyui/themes/icon.css" />
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+<style type="text/css">
+	a{
+	text-decoration: none;
+	}
+	.operateBtn{
+		text-decoration: none;
+	}
+</style>
+</head>
+<body>
+	<div>
+		&emsp;&emsp;关键字<input  type="text" class="easyui-textbox"/>
+		<a href="#" class="easyui-linkbutton" plain="true" iconCls="icon-search" id="searchByDate" onclick="doSearchUser()">查询</a>
+		&emsp;&emsp;&emsp;<a href="#" class="easyui-linkbutton" onclick="addDic()">添加数据字明细</a>
+	</div>
+	<br/>
+	<!-- height:250px -->
+	<div id="tt" class="easyui-tabs" style="width:700px;">
+<!-- 		<div title="About" style="padding:10px">			
+		</div>
+		<div title="My Documents" style="padding:10px">
+			h
+		</div>
+		<div title="Help"  style="padding:10px">
+			This is the help content.这是数据字
+		</div> -->
+	</div>
+	
+	<table id="grid" style="width: 800px" title="My Users"
+				rownumbers="true" data-options="fit:true" toolbar="#toolbar"
+				fitColumns="true" singleSelect="true"></table>
+	<div id="editDlg" style="padding:8px;">
+	    <form id="editForm">
+	        <input name="itemId" type="hidden"> 
+			<table>
+			 	 <tr>
+			  	 	 <td>名称</td><td><input name="itemName"> </td>
+				 </tr>
+				 <tr>
+			    	 <td>值</td><td><input name="itemValue"> </td>
+				 </tr>
+				 <tr>
+			    	 <td>序列</td><td><input name="itemSortValue"> </td>
+				 </tr>
+	        </table>
+	    </form>
+    
+    
+</div>
+	
+<script type="text/javascript">
+//初始化编辑窗口
+	$('#editDlg').dialog({
+		title: '编辑',//窗口标题
+		width: 300,//窗口宽度
+		height: 200,//窗口高度
+		closed: true,//窗口是是否为关闭状态, true：表示关闭
+		modal: true,//模式窗口
+		buttons:[{
+			text:'保存',
+			iconCls: 'icon-save',
+			handler:function(){
+				// 做表单字段验证，当所有字段都有效的时候返回true
+				if(!$('#editForm').form('validate')){
+					return;
+				}
+				//用记输入的部门信息
+				var submitData= $('#editForm').serializeJSON();
+				console.log("submitData:"+submitData);
+				$.ajax({
+					url: "user/Save",
+					data: submitData,
+					dataType: 'json',
+					type: 'post',
+					success:function(rtn){
+						//{success:true, message: 操作失败}
+						console.log("返回了结果："+JSON.stringify(rtn));
+						console.log("rtn.data: "+rtn.data);
+						console.log("rtn.data.success: "+rtn.data.success);
+						console.log("rtn.data.'success': "+rtn.data['success']);
+						$.messager.alert('提示',"操作成功", 'info',function(){
+							//if(rtn.data.success){
+								console.log("进入了成功");
+								//关闭弹出的窗口
+								$('#editDlg').dialog('close');
+								//刷新表格
+								$('#grid').datagrid('reload');
+							//}
+						});
+					}
+				});
+			}
+		},{
+			text:'关闭',
+			iconCls:'icon-cancel',
+			handler:function(){
+				//关闭弹出的窗口
+				$('#editDlg').dialog('close');
+			}
+		}]
+	});
+
+	/**
+ 	 * 删除
+ 	 */
+ 	function del(itemId){
+ 	/*	 var row = $('#grid').datagrid('getSelected');
+ 		 console.log(row);*/
+ 		console.log("itemId:　"+itemId);
+ 		$.messager.confirm("确认","确认要删除吗？",function(yes){
+ 			 if(yes){
+ 				$.ajax({
+ 					url:'sysdic/delItemByItemId?itemId=' + itemId,
+ 					dataType: 'json',
+ 					type: 'post',
+ 					success:function(rtn){
+ 						$.messager.alert("提示",rtn.msg,'info',function(){
+ 							//刷新表格数据
+ 							//$("#tb"+index).
+ 							$('#grid').datagrid('reload');
+ 						});
+ 					}
+ 				});
+ 			} 
+ 		});
+ 	}
+
+ 	/**
+ 	 * 修改
+ 	 */
+ 	function edit(itemId){
+ 		console.log("修改=="+itemId);
+ 		//弹出窗口
+ 		$('#editDlg').dialog('open');
+
+ 		//清空表单内容
+ 		$('#editForm').form('clear');
+
+ 		//设置保存按钮提交的方法为update
+ 		method = "update";
+
+ 		//加载数据
+ 		 $('#editForm').form('load','sysdic/getItemByItemId?itemId=' + itemId); 
+ 		
+ 	}
+ 	
+	$(function(){
+		console.log("=================");
+		$('#tt').tabs(
+				{tabPosition:'left'
+					});
+	});
+	var index =0;
+	$(function(){
+		
+		$.ajax({
+			url:"${pageContext.request.contextPath}/getDicAndItemsById",
+			dataType:"json",
+			method:"get",
+			success:function(data){
+				console.log("成功 data"+data);
+				 $(data).each(function(i,pro){
+					/* $("#province").append("<option>"+pro.name+"</option>"); */
+					console.log("i: "+i+" pro: "+pro+" pro.dicId: "+pro.dicId);
+						addTab(pro.dicName,pro.items);
+				 }); 
+			},
+			error:function(data){
+				console.log("失败");
+			}
+		});
+	})
+	
+	function addTab(title,content){
+		console.log("content===>"+content);
+    if ($('#tt').tabs('exists', title)) {
+        $('#tt').tabs('select',title)
+    } else {
+        $('#tt').tabs('add',{
+            title:title,
+            closable:false, 
+            content:'<table id="tb'+index+'" class="easyui-datagrid"></table>',
+           
+        });
+         console.log("================>将要添加表格");
+        addGrid(content); 
+        index++;  
+    }
+    
+  //添加数据表格的方法
+     function addGrid(content){
+  		console.log("进入了添加表格的方法  content: "+content);
+  		 $("#tb"+index).datagrid({
+  			 /* url:content, */
+             iconCls:'icon-ok',
+             columns:[[
+                       {field:'itemName',title:'名称',width:100},
+                       {field:'itemValue',title:'值',width:100},
+                       {field:'itemSortValue',title:'序列',width:100,align:'right'},
+                       //操作行
+                       {field:'-',title:'操作',width:100,formatter: function(value,row,index){
+                       	console.log("row.itemId:　"+row.itemId);
+                       	/* row.uuid = row.uid; */
+                       	console.log("itemName????????====>"+row.itemName);
+                           var oper = '<a class="operateBtn" href="javascript:void(0)" onclick="edit(\''+row.itemId+ '\')">修改</a>';
+                            oper += ' <a class="operateBtn" href="javascript:void(0)" onclick="del(\'' + row.itemId + '\')">删除</a>'; 
+                           return oper;
+                       }}
+                       ]],
+                       
+             fitColumns:true,//允许表格自动缩放，以适应父容器
+             pagination : true//分页
+
+  		 });
+  		//将数据绑定到datagrid
+  		$("#tb"+index).datagrid('loadData', content);    
+    } 
+  
+
+}
+
+
+	
+</script>
+	
+</body>
+</html>

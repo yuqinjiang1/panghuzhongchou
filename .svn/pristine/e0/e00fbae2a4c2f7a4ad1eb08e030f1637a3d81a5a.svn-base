@@ -1,0 +1,42 @@
+package com.xykj.crowdfunding.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.xykj.crowdfunding.reverse.dao.LoanformMapper;
+import com.xykj.crowdfunding.reverse.pojo.Loanform;
+import com.xykj.crowdfunding.reverse.pojo.LoanformExample;
+import com.xykj.crowdfunding.reverse.pojo.LoanformExample.Criteria;
+import com.xykj.crowdfunding.service.LoanformService;
+import com.xykj.crowdfunding.utils.EasyUIResult;
+
+@Service
+public class LoanformServiceImpl implements LoanformService {
+	@Autowired
+	private LoanformMapper loanformMapper;
+	@Override
+	public EasyUIResult<Loanform> getResult(int page, int rows) {
+		LoanformExample example = new LoanformExample();
+		//创建过滤条件
+		Criteria criteria = example.createCriteria();
+		//设置分页
+		PageHelper.startPage(page, rows);
+		List<Loanform> list = loanformMapper.selectByExample(example);
+		//取分页信息
+		PageInfo<Loanform> pageInfo = new PageInfo<Loanform>(list);
+		long total = pageInfo.getTotal();
+		//将结果封装然后返回
+		EasyUIResult<Loanform> result = new EasyUIResult<Loanform>(total,list);
+		return result;
+	}
+
+	@Override
+	public void addUser(Loanform loanform) {
+		loanformMapper.insert(loanform);
+	}
+
+}

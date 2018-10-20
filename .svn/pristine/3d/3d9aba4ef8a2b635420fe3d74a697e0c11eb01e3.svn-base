@@ -1,0 +1,13 @@
+
+#loginBox{
+	margin-left: 0 auto;
+}
+a:link,a:visited,a:hover{
+	text-decoration: none;
+}
+#login{
+	margin-left: 100px;
+}
+#register{
+	margin-left: 50px;
+}

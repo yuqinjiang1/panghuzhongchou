@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/head.jsp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>后台管理系统</title>
+
+<script type="text/javascript">
+function addTab(title, url){
+    if ($('#t').tabs('exists', title)){
+        $('#t').tabs('select', title);
+    } else {
+        var content = '<iframe scrolling="auto" frameborder="0"  src="'+url+'" style="width:100%;height:100%;"></iframe>';
+        $('#t').tabs('add',{
+            title:title,
+            content:content,
+            closable:true
+        });
+    }
+}
+</script>
+</head>
+
+<body>
+
+	<h2>欢迎来到p2p金融平台后台管理系统</h2>
+	<div class="easyui-layout" data-options="fit:true">
+
+		<div data-options="region:'west',split:true" title="导航菜单" style="width:200px;">
+			<div class="easyui-accordion" data-options="fit:true,border:false">
+				<div title="用户管理" style="padding:10px;">
+					<a href="javascript:addTab('借款人管理','http://www.baidu.com')" class="easyui-linkbutton" style="display:block;" >借款人管理</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">投资者管理</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">员工管理</a>
+				</div>
+				<div title="安全管理" data-options="selected:true" style="padding:10px;">
+					<a href="#" class="easyui-linkbutton" style="display:block;">系统数据字典目录</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">系统数据字典明细</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">权限管理</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">角色管理</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">菜单管理</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">登录历史</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">数据库防篡改监控</a>
+				</div>
+				<div title="审核项目" data-options="selected:true" style="padding:10px;">
+					<a href="#" class="easyui-linkbutton" style="display:block;">实名认证审核</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">认证材料审核</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">发标前审核</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">满标一审</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">满标二审</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">线下充值审核</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">提现审核</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">提现转账确认</a>
+				</div>
+				<div title="财务管理" style="padding:10px">
+					<a href="#" class="easyui-linkbutton" style="display:block;">系统账户流水</a>
+					<a href="#" class="easyui-linkbutton" style="display:block;">借款查询</a>
+				</div>
+			</div>
+		</div>
+		
+		<div region="center">
+            <div class="easyui-tabs" fit="true" border="false" id="t">
+                
+            </div>
+        </div>
+
+	<div region="south" style="height: 30px;padding: 5px" align="center">
+            Copyright © 2016-2018 xykj
+        </div>
+	</div>
+	 
+
+</body>
+</html>

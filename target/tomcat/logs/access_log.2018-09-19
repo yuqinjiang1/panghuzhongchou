@@ -1,0 +1,9 @@
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:20:13 +0800] "GET /jiang_crowd_funding/index.jsp HTTP/1.1" 200 1646 http-bio-8080-exec-1 1015
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:20:13 +0800] "GET /jiang_crowd_funding/css/head.css HTTP/1.1" 200 242 http-bio-8080-exec-3 38
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:22:33 +0800] "GET /jiang_crowd_funding/index.jsp HTTP/1.1" 200 3427 http-bio-8080-exec-1 833
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:22:33 +0800] "GET /jiang_crowd_funding/css/head.css HTTP/1.1" 304 - http-bio-8080-exec-3 27
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:22:33 +0800] "GET /jiang_crowd_funding/home_tree.json HTTP/1.1" 200 1409 http-bio-8080-exec-4 5
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:22:33 +0800] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-5 0
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:24:25 +0800] "GET /jiang_crowd_funding/index.jsp HTTP/1.1" 200 3439 http-bio-8080-exec-1 705
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:24:25 +0800] "GET /jiang_crowd_funding/css/head.css HTTP/1.1" 200 263 http-bio-8080-exec-3 28
+0:0:0:0:0:0:0:1 - - [19/Sep/2018:21:24:26 +0800] "GET /jiang_crowd_funding/home_tree.json HTTP/1.1" 304 - http-bio-8080-exec-4 3

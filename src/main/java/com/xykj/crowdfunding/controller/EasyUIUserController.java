@@ -1,0 +1,47 @@
+package com.xykj.crowdfunding.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
+import com.xykj.crowdfunding.reverse.pojo.User;
+import com.xykj.crowdfunding.service.EasyUIUserService;
+import com.xykj.crowdfunding.utils.EasyUIResult;
+
+@Controller
+public class EasyUIUserController {
+	
+	@Autowired
+	private EasyUIUserService easyUIUserService;
+
+	@ResponseBody
+	@RequestMapping("/getEasyUIResult")
+	public EasyUIResult<User> demoList(@RequestParam(value="page",defaultValue="1") int page,
+											@RequestParam(value="rows",defaultValue="20") int rows){
+		
+		System.out.println("进入了分页==============");
+		
+		/*Jedis jedis = jedisPool.getResource();*/
+		//EasyUIResult<User> userList = jedis.get("EasyUIUserController.demoList"+page+rows);
+		//page 页数  默认显示第一页
+		//rows 行数  默认显示20行
+		return easyUIUserService.getResult(page, rows);
+	} 
+	
+	@ResponseBody
+	@RequestMapping("/getEasyUISearchResult")
+	public EasyUIResult<User> demoSearchList(@RequestParam(value="name") String name,@RequestParam(value="page",defaultValue="1") int page,
+											@RequestParam(value="rows",defaultValue="20") int rows){
+		
+		System.out.println("进入了分页==============");
+		//page 页数  默认显示第一页
+		//rows 行数  默认显示20行
+		return easyUIUserService.getResult(name, page, rows);
+	} 
+
+}

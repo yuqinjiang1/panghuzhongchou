@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="com.xykj.crowdfunding.dao.UserDao">
+ 		<!-- 注册 -->
+ 		<insert id="register" parameterType="com.xykj.crowdfunding.pojo.User">
+ 			insert into user (user_id,name,password,phone) values(#{userId},#{name},#{password},#{phone})
+ 		</insert>
+ 		
+ 		<!-- 校验用户名是否被注册 -->
+ 		<select id="getUserByName" parameterType="String" resultType="com.xykj.crowdfunding.pojo.User">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user where name=#{name}
+ 		</select>
+ 		<!-- 校验手机是否被注册 -->
+ 		<select id="getUserByPhone" parameterType="String" resultType="com.xykj.crowdfunding.pojo.User">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user where phone=#{phone}
+ 		</select>
+ 		
+ 		<select id="getUserByNameAndPassWord" resultType="com.xykj.crowdfunding.pojo.User">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user where name=#{0} and password=#{1}
+ 		</select>
+ 	
+ 		<!-- 根据id查找用户 -->
+ 		<select id="getUserById" parameterType="String" resultType="com.xykj.crowdfunding.pojo.User">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user where user_id=#{userid}
+ 		</select>
+ 		
+ 		<!-- 查询所有用户 -->
+ 		<select id="getUsers" resultMap="userMap">
+ 			select user_id userid,role_id roleid,name,password,phone,trader_password traderpassword,email 
+ 			from user
+ 		</select>
+ 		
+ 		<resultMap type="com.xykj.crowdfunding.pojo.User" id="userMap">
+ 			<result column="user_id" property="userId"/>
+ 			<result column="role_id" property="roleId"/>
+ 			<result column="name" property="name"/>
+ 			<result column="password" property="password"/>
+ 			<result column="phone" property="phone"/>
+ 			<result column="trader_password" property="traderPassword"/>
+ 			<result column="email" property="email"/>
+ 		</resultMap>
+ 		
+ 		<!-- 修改密码 -->
+ 		<update id="updatePassword" parameterType="com.xykj.crowdfunding.pojo.User">
+ 		 	update user set password = ${password} where user_id=${userId}
+ 		</update>
+ 
+ </mapper>
+ 

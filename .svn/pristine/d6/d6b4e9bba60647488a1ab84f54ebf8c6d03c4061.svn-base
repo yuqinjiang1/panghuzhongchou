@@ -1,0 +1,45 @@
+package com.xykj.crowdfunding.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.xykj.crowdfunding.reverse.dao.BidobjectMapper;
+import com.xykj.crowdfunding.reverse.pojo.Bidobject;
+import com.xykj.crowdfunding.reverse.pojo.BidobjectExample;
+import com.xykj.crowdfunding.reverse.pojo.BidobjectExample.Criteria;
+import com.xykj.crowdfunding.service.BidobjectService;
+
+@Service
+public class BidobjectServiceImpl implements BidobjectService {
+	
+	@Autowired
+	private BidobjectMapper bidobjectMapper;
+
+	@Override
+	public boolean addBid(Bidobject bidobject) {
+		
+		int i = bidobjectMapper.insert(bidobject);
+		System.out.println("投标结果 i: "+i);
+		if (i > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public List<Bidobject> getBidobjectsByLoanId(Integer loanId) {
+		if (loanId==null) {
+			return null;
+		}
+		BidobjectExample example = new BidobjectExample();
+		//创建过滤条件
+		Criteria criteria = example.createCriteria().andLoanIdEqualTo(loanId);
+		//设置分页
+		
+		List<Bidobject> list= bidobjectMapper.selectByExample(example);
+		return list;
+	}
+
+}

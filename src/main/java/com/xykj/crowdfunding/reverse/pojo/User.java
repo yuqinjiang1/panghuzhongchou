@@ -1,0 +1,235 @@
+package com.xykj.crowdfunding.reverse.pojo;
+
+import java.util.Date;
+
+public class User {
+    private String userId;
+
+    private String name;
+
+    private String password;
+
+    private String phone;
+
+    private String traderPassword;
+
+    private String email;
+
+    private Boolean mailboxAuthenticationFlag;
+
+    private Boolean phoneAuthenticationFlag;
+
+    private Boolean vipMemberFlag;
+
+    private String realName;
+
+    private Integer personalQualificationsId;
+
+    private Integer monthlyIncome;
+
+    private Integer maritalStatus;
+
+    private Integer childrenSituation;
+
+    private Integer housingConditions;
+
+    private String headimg;
+
+    private String idNumber;
+
+    private String educationBackground;
+
+    private Date lastLoginTime;
+
+    private Date registerTime;
+
+    private Integer sex;
+
+    private Date emailsenddate;
+
+    private Boolean realNameAuthenticationFlag;
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password == null ? null : password.trim();
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
+    }
+
+    public String getTraderPassword() {
+        return traderPassword;
+    }
+
+    public void setTraderPassword(String traderPassword) {
+        this.traderPassword = traderPassword == null ? null : traderPassword.trim();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email == null ? null : email.trim();
+    }
+
+    public Boolean getMailboxAuthenticationFlag() {
+        return mailboxAuthenticationFlag;
+    }
+
+    public void setMailboxAuthenticationFlag(Boolean mailboxAuthenticationFlag) {
+        this.mailboxAuthenticationFlag = mailboxAuthenticationFlag;
+    }
+
+    public Boolean getPhoneAuthenticationFlag() {
+        return phoneAuthenticationFlag;
+    }
+
+    public void setPhoneAuthenticationFlag(Boolean phoneAuthenticationFlag) {
+        this.phoneAuthenticationFlag = phoneAuthenticationFlag;
+    }
+
+    public Boolean getVipMemberFlag() {
+        return vipMemberFlag;
+    }
+
+    public void setVipMemberFlag(Boolean vipMemberFlag) {
+        this.vipMemberFlag = vipMemberFlag;
+    }
+
+    public String getRealName() {
+        return realName;
+    }
+
+    public void setRealName(String realName) {
+        this.realName = realName == null ? null : realName.trim();
+    }
+
+    public Integer getPersonalQualificationsId() {
+        return personalQualificationsId;
+    }
+
+    public void setPersonalQualificationsId(Integer personalQualificationsId) {
+        this.personalQualificationsId = personalQualificationsId;
+    }
+
+    public Integer getMonthlyIncome() {
+        return monthlyIncome;
+    }
+
+    public void setMonthlyIncome(Integer monthlyIncome) {
+        this.monthlyIncome = monthlyIncome;
+    }
+
+    public Integer getMaritalStatus() {
+        return maritalStatus;
+    }
+
+    public void setMaritalStatus(Integer maritalStatus) {
+        this.maritalStatus = maritalStatus;
+    }
+
+    public Integer getChildrenSituation() {
+        return childrenSituation;
+    }
+
+    public void setChildrenSituation(Integer childrenSituation) {
+        this.childrenSituation = childrenSituation;
+    }
+
+    public Integer getHousingConditions() {
+        return housingConditions;
+    }
+
+    public void setHousingConditions(Integer housingConditions) {
+        this.housingConditions = housingConditions;
+    }
+
+    public String getHeadimg() {
+        return headimg;
+    }
+
+    public void setHeadimg(String headimg) {
+        this.headimg = headimg == null ? null : headimg.trim();
+    }
+
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber == null ? null : idNumber.trim();
+    }
+
+    public String getEducationBackground() {
+        return educationBackground;
+    }
+
+    public void setEducationBackground(String educationBackground) {
+        this.educationBackground = educationBackground == null ? null : educationBackground.trim();
+    }
+
+    public Date getLastLoginTime() {
+        return lastLoginTime;
+    }
+
+    public void setLastLoginTime(Date lastLoginTime) {
+        this.lastLoginTime = lastLoginTime;
+    }
+
+    public Date getRegisterTime() {
+        return registerTime;
+    }
+
+    public void setRegisterTime(Date registerTime) {
+        this.registerTime = registerTime;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    public Date getEmailsenddate() {
+        return emailsenddate;
+    }
+
+    public void setEmailsenddate(Date emailsenddate) {
+        this.emailsenddate = emailsenddate;
+    }
+
+    public Boolean getRealNameAuthenticationFlag() {
+        return realNameAuthenticationFlag;
+    }
+
+    public void setRealNameAuthenticationFlag(Boolean realNameAuthenticationFlag) {
+        this.realNameAuthenticationFlag = realNameAuthenticationFlag;
+    }
+}

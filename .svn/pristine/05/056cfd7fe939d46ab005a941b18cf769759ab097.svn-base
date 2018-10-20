@@ -1,0 +1,88 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<c:set var="cpath" value="${pageContext.request.contextPath }"></c:set>
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/icon.css" />
+
+<!-- 需要先导入jquery的文件，再导入easyUI文件 -->
+<script type="text/javascript" src="${cpath }/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="${cpath }/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${cpath }/easyui/jquery.easyui.min.js"></script>
+<link rel="stylesheet" href="${cpath }/easyui/themes/icon.css"
+	type="text/css" />
+
+<script type="text/javascript">
+	
+</script>
+<style type="text/css">
+/* #ee {
+	float: left;
+	margin-left: 300px;
+	margin-right: 30px;
+} */
+
+.textbox{
+    height:20px;
+    margin:0;
+    padding:0 2px;
+    box-sizing:content-box;
+}
+</style>
+</head>
+<body>
+
+
+
+<input type="text" class="textbox"/>
+
+	<div class="row form-group">
+		<div class="col-md-2">
+			<label class="form-text text-right">当前应收款</label>
+		</div>
+		<div class="col-md-4 form-inline">
+			<div class="input-group">
+				<input type="text" class="form-control" name="totalmoney"> <span
+					class="input-group-addon">元</span>
+			</div>
+		</div>
+	</div>
+	<!-- 	<div id="abd">
+
+		还款方式&nbsp; <input type="radio" value="" />按月分期<input type="radio"
+			value="" />按月到期 <br /> <br /> 最小投标&nbsp; <input
+			class="easyui-textbox" type="text"/> <br />
+		<br /> 
+		<div id="bb">招标天数</div>
+		
+ 		<select class="ComboBox"><option
+				value="#">1</option></select>
+				<br/><br/>
+
+			<div class="bcd">
+				<div id="dd" style="float: left; margin: 20px 0px;">
+					借款标题 <input id="titles" name="titles" class="easyui-textbox"
+						style="width: 300px;" />
+			</div>
+		</div>
+
+		<div class="abc" style="clear: both;">
+			<div id="ee" style="margin: 20px 0px; float: left;">借款描述</div>
+			<br/>
+			<br/> <input id="description" name="description"
+				class="easyui-textbox" data-options="multiline:true"
+				style="width: 300px; height: 200px" />
+				<br/><br/>
+		</div>
+	</div> -->
+	
+</body>
+</html>

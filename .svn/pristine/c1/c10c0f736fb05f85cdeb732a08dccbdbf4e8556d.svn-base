@@ -1,0 +1,10 @@
+#headImg{
+	url:"../images/personicon.png";
+	height: 100px;
+	width: 100px;
+	background-color: red;
+}
+
+.basecontent{
+	color:red;
+}

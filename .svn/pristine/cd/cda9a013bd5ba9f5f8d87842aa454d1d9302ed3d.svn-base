@@ -1,0 +1,30 @@
+package com.xykj.crowdfunding.reverse.dao;
+
+import com.xykj.crowdfunding.reverse.pojo.Borrowmarkinfo;
+import com.xykj.crowdfunding.reverse.pojo.BorrowmarkinfoExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
+public interface BorrowmarkinfoMapper {
+    int countByExample(BorrowmarkinfoExample example);
+
+    int deleteByExample(BorrowmarkinfoExample example);
+
+    int deleteByPrimaryKey(Integer loadId);
+
+    int insert(Borrowmarkinfo record);
+
+    int insertSelective(Borrowmarkinfo record);
+
+    List<Borrowmarkinfo> selectByExample(BorrowmarkinfoExample example);
+
+    Borrowmarkinfo selectByPrimaryKey(Integer loadId);
+
+    int updateByExampleSelective(@Param("record") Borrowmarkinfo record, @Param("example") BorrowmarkinfoExample example);
+
+    int updateByExample(@Param("record") Borrowmarkinfo record, @Param("example") BorrowmarkinfoExample example);
+
+    int updateByPrimaryKeySelective(Borrowmarkinfo record);
+
+    int updateByPrimaryKey(Borrowmarkinfo record);
+}

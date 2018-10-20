@@ -1,0 +1,83 @@
+package com.xykj.crowdfunding.reverse.pojo;
+
+public class Borrowmarkinfo {
+    private Integer loadId;
+
+    private String userId;
+
+    private String borrowTitle;
+
+    private Float annualInterestRate;
+
+    private Long amount;
+
+    private Integer repaymentMethod;
+
+    private Float progress;
+
+    private String name;
+
+    public Integer getLoadId() {
+        return loadId;
+    }
+
+    public void setLoadId(Integer loadId) {
+        this.loadId = loadId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId == null ? null : userId.trim();
+    }
+
+    public String getBorrowTitle() {
+        return borrowTitle;
+    }
+
+    public void setBorrowTitle(String borrowTitle) {
+        this.borrowTitle = borrowTitle == null ? null : borrowTitle.trim();
+    }
+
+    public Float getAnnualInterestRate() {
+        return annualInterestRate;
+    }
+
+    public void setAnnualInterestRate(Float annualInterestRate) {
+        this.annualInterestRate = annualInterestRate;
+    }
+
+    public Long getAmount() {
+        return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
+    }
+
+    public Integer getRepaymentMethod() {
+        return repaymentMethod;
+    }
+
+    public void setRepaymentMethod(Integer repaymentMethod) {
+        this.repaymentMethod = repaymentMethod;
+    }
+
+    public Float getProgress() {
+        return progress;
+    }
+
+    public void setProgress(Float progress) {
+        this.progress = progress;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
+    }
+}

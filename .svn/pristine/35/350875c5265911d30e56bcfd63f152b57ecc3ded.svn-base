@@ -1,0 +1,19 @@
+package com.xykj.crowdfunding.service;
+
+import com.xykj.crowdfunding.reverse.pojo.Account;
+
+public interface AccountService {
+	/**
+	 * 添加账户
+	 * @param account
+	 * @return
+	 */
+	public boolean addAccount(Account account);
+	/**
+	 * 修改账号信息
+	 * @param account
+	 * @return
+	 */
+	public boolean updateAccountInfo(Account account);
+
+}

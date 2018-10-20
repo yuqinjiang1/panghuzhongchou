@@ -1,0 +1,51 @@
+package com.xykj.crowdfunding.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.xykj.crowdfunding.reverse.dao.SysMenuMapper;
+import com.xykj.crowdfunding.reverse.pojo.SysMenu;
+import com.xykj.crowdfunding.service.SysMenuService;
+
+@Service
+public class SysMenuServiceImpl implements SysMenuService{
+	@Autowired
+	private SysMenuMapper menuMapper;
+
+	@Override
+	public int deleteByPrimaryKey(Integer menuId) {
+		return 0;
+	}
+
+	@Override
+	public int insert(SysMenu record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public SysMenu selectByPrimaryKey(Integer menuId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<SysMenu> queryUseMenu(String userId) {
+		
+		return menuMapper.queryUseMenu(userId);
+	}
+
+	@Override
+	public List<SysMenu> selectAll() {
+		return menuMapper.selectAll();
+	}
+
+	@Override
+	public int updateByPrimaryKeySelective(SysMenu record) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+}

@@ -1,0 +1,207 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户注册</title>
+<c:set var="cpath" value="${pageContext.request.contextPath }"></c:set>
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/icon.css" />
+
+<!-- 需要先导入jquery的文件，再导入easyUI文件 -->
+<script type="text/javascript" src="${cpath }/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${cpath }/easyui/jquery.easyui.min.js"></script>
+<link rel="stylesheet" href="${cpath }/easyui/themes/icon.css"
+	type="text/css" />
+
+<script type="text/javascript">
+$(function(){
+	$("input",$("#name").next("span")).blur(function(){
+		 alert("登录名已存在"); 
+	})
+
+	
+
+});
+
+function yzma(){
+	//判断用户输入的验证码是否正确
+	//获取用户输入的验证码
+	var code = $("input[name=image]").val();
+	//一般验证用户输入的验证码会采用Ajax验证
+		 $.post("checkVerifyCode","verifyCode="+code,function(data){
+			/* alert(data); */
+		}); 
+	}
+//刷新验证码图片
+function reflushImg(){
+	var src = $("#imgcode").attr("src");
+	//时间戳
+	$("#imgcode").attr("src",src+"?time="+new Date().getTime());
+	return false;
+}
+</script>
+<style type="text/css">
+	a:LINK{
+		text-decoration: none;
+		color: #2fa8ee;
+	}
+	a:HOVER {
+		color:blue;
+	}
+/* 	a:VISITED {
+		color: #2fa8ee;
+	} */
+	
+	#sbtn{
+		background-image: url("images/ebtnbg.png");
+		color:#ffffff;
+	}
+	#veryfcodetd{
+		position: relative;
+	}
+	#imgcode{
+		right: -70px;
+	 	bottom: 0px;
+	 	position: absolute;
+	}
+	#crefimg{
+		right: -130px;
+	 	bottom: 10px;
+	 	position: absolute;
+	}
+}
+</style>
+<!-- <script type="text/javascript">
+function check() {
+	$(".error").text("");
+	var bool = true;
+	
+	 //验证用户名
+	if(!$(":text[name=cname]").val()) {                     
+		$("#cnameError").text("客户名称不能为空");
+		bool = false;
+	}
+	
+	 //验证密码
+	if($("#password")){
+		$("#genderError").text("客户性别不能为空");
+		bool = false;
+	}
+	
+	 //验证确认密码
+	if(!$(":text[name=cellphone]").val()) {
+		$("#cellphoneError").text("手机不能为空");
+		bool = false;
+	}
+	
+	 //验证验证码
+	if(!$(":text[name=email]").val()) {
+		$("#emailError").text("email不能为空");
+		bool = false;
+	}
+	
+	 //验证手机
+	var p=document.getElementById("phone");
+	 		p=p.value;
+	 		if(p.length!=11){
+	 			$("phoneError").text("");
+				bool = false;
+	}
+	
+	 //验证短信验证码
+	if(!$(":text[name=email]").val()) {
+		$("#emailError").text("email不能为空");
+		bool = false;
+	}
+	
+	 //验证推荐码
+	if(!$(":text[name=email]").val()) {
+		$("#emailError").text("email不能为空");
+		bool = false;
+	}
+	
+	if(bool) {
+		$("form").submit();
+	}
+}
+</script>
+ -->
+<style type="text/css">
+	.a{text-align:right;}
+	.c {text-align: center;}
+	.error{color:red;	}
+</style>
+</head>
+
+<body style="text-align: center; margin: 0 auto">
+	<h3>填写注册信息</h3>
+
+	<!-- <div style="text-align: center;background-color: red"> -->
+	<div style="margin: 0 auto; width: 500px">
+		<div class="easyui-panel" title="注册" style="width: 500px;">
+			<div style="padding: 10px 60px 20px 60px">
+				<form id="ff" method="post">
+					<table cellpadding="5">
+						<tr>
+							<td class="a">用户名</td>
+							<td><input id="name" class="easyui-textbox" type="text" name="name" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+							<td  class="a">密码</td>
+							<td><input class="easyui-textbox" type="password" name="password" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+							<td  class="a">重复密码</td>
+							<td><input class="easyui-textbox" type="password" name="password2" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+							<td  class="a">验证码</td>
+							<td id="veryfcodetd">
+								<input class="easyui-textbox" type="text" name="ValidateCode"  data-options="required:true" ></input>
+								 <img id="imgcode" title="点击图片刷新" src="getVerifyCode" onclick="reflushImg()"  style="background-color: red;"/>
+								 <!-- <br/> -->
+								 <a id="crefimg" href="#" onclick="reflushImg()">点击刷新</a> 
+								<!--title="点击图片刷新" src="getVerifyCode" onclick="reflushImg()"  -->
+							</td>
+						</tr>
+						<tr>
+							<td  class="a">手机号码</td>
+							<td><input class="easyui-textbox"  type="text" name="phone" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+							<td  class="a">手机验证码</td>
+							<td><input class="easyui-textbox" type="text" name="PhoneValidate" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+							<td  class="a">推荐码</td>
+							<td><input class="easyui-textbox" type="text" name="RecommendCode" data-options="required:true"></input></td>
+						</tr>
+						<tr>
+
+							<td colspan="2" class="c"><a href="#" >《鸿学金信网站服务协议》</a></td>
+
+						</tr>
+					</table>
+				</form>
+				<div style="text-align: center; padding: 5px">
+					<a id="sbtn" href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()" style="background-color: #2fa8ee">同意协议并注册</a> 
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function submitForm() {
+			$('#ff').form('submit');
+		}
+
+	</script>
+
+
+</body>
+</html>

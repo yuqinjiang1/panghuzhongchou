@@ -1,0 +1,157 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<c:set var="cpath" value="${pageContext.request.contextPath }"></c:set>
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/default/easyui.css" />
+<link rel="stylesheet" type="text/css"
+	href="${cpath }/easyui/themes/icon.css" />
+
+<!-- 需要先导入jquery的文件，再导入easyUI文件 -->
+<script type="text/javascript" src="${cpath }/js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="${cpath }/easyui/jquery.min.js"></script>
+<script type="text/javascript"
+	src="${cpath }/easyui/jquery.easyui.min.js"></script>
+<link rel="stylesheet" href="${cpath }/easyui/themes/icon.css"
+	type="text/css" />
+	<script type="text/javascript">
+	$(function() {
+		$('#dg').datagrid('getPanel').removeClass('lines-both lines-no lines-right lines-bottom').addClass("hline");
+
+		$('#dg').datagrid({
+			striped : true,
+			fitColumns:true,
+			onLoadSuccess : function(data) {
+				var panel = $(this).datagrid('getPanel');
+				
+				var tr = panel.find('tr');
+				tr.each(function() {
+					
+					var td = $(this).children('td');
+					td.css({
+						"border-width" : "0"
+					});
+					;
+				});
+			}
+		})
+	});
+</script>
+<style type="text/css">
+	#check{
+		right: -5px;
+		bottom: 0px;
+		position: relative;
+	}
+	
+	 .easyui-panel{
+        background:#f5f5f5;
+        border-color: #f5f5f5;
+   
+    }
+</style>
+</head>
+<body>
+
+	<div style="float: left">
+		<form action="" method="post">
+	<div id="aa" style="float: left">
+	关键字<input  class="easyui-textbox"/><a href="#" id="check" class="easyui-linkbutton">查询</a>
+	
+	
+	
+	 	<a href="#" id="check" class="easyui-linkbutton">添加数据字典明细</a><br/><br/>
+	</div>
+	 	
+	</form>
+	</div>
+	 	
+<div style="clear: both">
+	 	<div id="bb" style="float: left" >
+	 	<div class="easyui-panel" title="数据字典分组" style="width: 150px;height: 300px;">
+	 	<table>
+	 		<tr>
+	 			<td>月收入</td>
+	 		</tr>
+	 		<tr>
+	 			<td>子女情况</td>
+	 		</tr>
+	 		<tr>
+	 			<td>学历情况</td>
+	 		</tr>
+	 		<tr>
+	 			<td>住房条件</td>
+	 		</tr>
+	 		<tr>
+	 			<td>婚姻情况</td>
+	 		</tr>
+	 		<tr>
+	 			<td>用户认证文件类型</td>
+	 		</tr>
+	 	</table>
+	 	</div>
+	 	</div>
+	<div style="float: left;left: 5px;bottom: 0px;
+		position: relative;">
+	<table class="easyui-datagrid" id="dg" style="width:549px;height:250px">
+		<thead >
+			<tr>
+				<th data-options="field:'名称'" style="width: 183px">名称</th>
+				<th data-options="field:'值'" style="width: 183px">值</th>
+				<th data-options="field:'序列'" style="width: 183px">序列</th>
+				<th data-options="field:'操作'" style="width: 183px">操作</th>
+			</tr>
+		</thead>
+		<tbody >
+			<tr>
+				<td >大专以下</td>
+				<td ></td>
+				<td>1</td>
+				<td><a href="#" style="color: blue">修改</a> 
+					<a href="#" style="color: blue">删除</a>
+				</td>
+				
+			</tr>
+			<tr>
+				<td>大专</td>
+				<td ></td>
+				<td>2</td>
+				<td><a href="#" style="color: blue">修改</a>
+					<a href="#" style="color: blue">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>本科</td>
+				<td ></td>
+				<td>3</td>
+				<td><a href="#" style="color: blue">修改</a>
+					<a href="#" style="color: blue">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>硕士</td>
+				<td ></td>
+				<td>4</td>
+				<td><a href="#" style="color: blue">修改</a>
+					<a href="#" style="color: blue">删除</a>
+				</td>
+			</tr>
+			<tr>
+				<td>博士及以上</td>
+				<td ></td>
+				<td>5</td>
+				<td><a href="#" style="color: blue">修改</a>
+					<a href="#" style="color: blue">删除</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>实名认证审核</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/easyui/themes/icon.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/easyui/locale/easyui-lang-zh_CN.js"></script>
+
+</head>
+<body >
+
+	
+	<div class="easyui-panel" title="实名认证" style="width: 100％">
+		
+		<div style="margin: 0 auto; width: 500px">
+			
+			<form id="ff" method="post" action="#" >
+		
+				<table cellpadding="5">
+					<tr>
+						<td colspan="2" style="color: red;">
+							为保护您账户安全，实名认证成功之后不能修改信息，请认真填写！</td>
+					</tr>
+					<tr>
+						<td>用户名</td>
+						<td><input class="easyui-textbox" type="text" name="name"
+											data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>性别</td>
+						<td><input type="radio"   name="gender" value="男" ><span>男</span>
+								<input type="radio"   name="gender" value="女"><span>女</span></td>
+					</tr>
+					<tr>
+						<td>证件号码</td>
+						<td><input class="easyui-textbox" type="text" name="idCard"
+							data-options="required:true"></input></td>
+					</tr>
+					<tr>
+						<td>出生日期</td>
+						<td><input class="easyui-textbox"  type="text" name="birthday"
+							data-options="multiline:true"></input></td>
+					</tr>
+					<tr>
+						<td>证件地址</td>
+						<td><input class="easyui-textbox" type="text" name="birthplace"
+							data-options="multiline:true"></input></td>
+					</tr>
+					<tr>
+						<td>上传正面照片</td>
+						<td><input class="easyui-filebox" name="file1" style="width:65%"></td>
+					</tr>
+					<tr>
+						<td>上传反面照片</td>
+						<td><input class="easyui-filebox" name="file1" style="width:65%"></td>
+					</tr>
+				</table>
+			</form>
+
+			<div style="text-align: center; padding: 5px">
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交</a> 
+				<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">取消</a>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script>
+		function submitForm() {
+			$('#ff').form('submit');
+		}
+		function clearForm() {
+			$('#ff').form('clear');
+		}
+	</script>
+</body>
+</html>

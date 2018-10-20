@@ -1,0 +1,11 @@
+package com.xykj.crowdfunding.service;
+
+import java.util.List;
+
+import com.xykj.crowdfunding.reverse.pojo.Systemdictionary;
+
+
+public interface SystemdictionaryService {
+	List<Systemdictionary> getDicByName(String dic_name);
+	List<Systemdictionary> getDicById(Integer dic_id);
+}
